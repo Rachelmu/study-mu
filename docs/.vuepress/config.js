@@ -3,12 +3,18 @@ module.exports = {
         logo: '/assets/img/logo.png',
         // 添加导航栏
         nav: [{text: "主页", link: "/"},
-            { text: "node", link: "/node/"},
-            { text: "http", link: "/http/"},
-            { text: "前端", link: "/webframe/"},
-            { text: "数据库", link: "/database/"},
-            { text: "android", link: "/android/"},
-            { text: "面试问题", link: "/interview/" }
+          { text: "前端",
+            items: [ 
+              { text: "html", link:"/web/html/"},
+              { text: "css", link:"/web/css/"},
+              { text: "javascript", link:"/web/js/"},
+            ]
+          },
+          { text: "node", link: "/node/"},
+          { text: "http", link: "/http/"},
+          { text: "数据库", link: "/database/"},
+          { text: "android", link: "/android/"},
+          { text: "面试问题", link: "/interview/" }
         ],
         sidebar:{
             "/node/":[

@@ -4,7 +4,7 @@ heroImage: /logo.png
 heroText: 阿木木的前端指南
 tagline: 一起开启快乐（并不）的学习之旅吧
 actionText: Get Started →
-actionLink: /study/
+actionLink: /web/html/
 features:
 - title: 坚持的每一天都不会被浪费
   details: 记录每一天的进步, 一分耕耘，一分收获.
