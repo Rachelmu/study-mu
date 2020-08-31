@@ -1,6 +1,7 @@
 module.exports = {
     title: '阿木木的前端笔记',
     description: '阿木木的前端指南',
+    base: '/study-mu/',
     head: [
       ['link', 
           { rel: 'icon', href: '/logo.png' }
@@ -32,32 +33,32 @@ module.exports = {
           { text: "前端工程化", link: "/engineering/"},
           { text: "面试问题", link: "/interview/" }
         ],
-        // sidebar: 'auto'
-        sidebar:{
-            "/web/css":[
-              ["", "css基础"],
-              {
-                title: "css",
-                name: "css",
-                collabsable: false,
-                children: [
-                  ["css/", "目录"],
-                  ['css/1', "css常考面试题"]
-                ]
-              }
-            ],
-            "/web/html":[
-              ["", "html"],
-              {
-                title: "css",
-                name: "css",
-                collabsable: false,
-                children: [
-                  ["css/", "目录"],
-                  ['css/1', "css常考面试题"]
-                ]
-              }
-            ]
-        }
+        sidebar: 'auto'
+        // sidebar:{
+        //     "/web/css":[
+        //       ["", "css基础"],
+        //       {
+        //         title: "css",
+        //         name: "css",
+        //         collabsable: false,
+        //         children: [
+        //           ["css/", "目录"],
+        //           ['css/', "css常考面试题"]
+        //         ]
+        //       }
+        //     ],
+        //     "/web/html":[
+        //       ["", "html"],
+        //       {
+        //         title: "css",
+        //         name: "css",
+        //         collabsable: false,
+        //         children: [
+        //           ["css/", "目录"],
+        //           ['css/1', "css常考面试题"]
+        //         ]
+        //       }
+        //     ]
+        // }
     }
   }
