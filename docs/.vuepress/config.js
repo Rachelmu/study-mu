@@ -1,15 +1,14 @@
 module.exports = {
+    title: '阿木木的前端笔记',
+    description: '阿木木的前端指南',
+    head: [
+      ['link', 
+          { rel: 'icon', href: '/logo.png' }
+          //浏览器的标签栏的网页图标，第一个'/'会遍历public文件夹的文件
+      ],  
+    ],
     themeConfig: {
-        title: '阿木木',
-        description: '阿木木的前端指南',
-        base: '/docs/',
         logo: '/logo.png',
-        head: [
-          ['link', 
-              { rel: 'icon', href: '/logo.png' }
-              //浏览器的标签栏的网页图标，第一个'/'会遍历public文件夹的文件
-          ],  
-        ],
         // 添加导航栏
         nav: [{text: "主页", link: "/"},
           { text: "前端基础",
@@ -17,6 +16,7 @@ module.exports = {
               { text: "html", link:"/web/html/"},
               { text: "css", link:"/web/css/"},
               { text: "javascript", link:"/javaScript/"},
+              { text: "es6", link:"/javaScript/es6"},
             ]
           },
           { text: "前端框架",
@@ -28,18 +28,26 @@ module.exports = {
           { text: "TypeScript", link: "/TypeScript/"},
           { text: "node", link: "/node/"},
           { text: "http", link: "/http/"},
-          { text: "算法", link: "/arithmetic/"},
-          { text: "数据库", link: "/database/"},
+          { text: "数据结构与算法", link: "/arithmetic/"},
+          { text: "前端工程化", link: "/engineering/"},
           { text: "面试问题", link: "/interview/" }
         ],
+        // sidebar: 'auto'
         sidebar:{
-            "/node/":[
-              ["", "node目录"],
-              ["path", "作为前端也需要知道的路径知识"],
-              ["stream", "node核心模块-stream"]
+            "/web/css":[
+              ["", "css基础"],
+              {
+                title: "css",
+                name: "css",
+                collabsable: false,
+                children: [
+                  ["css/", "目录"],
+                  ['css/1', "css常考面试题"]
+                ]
+              }
             ],
-            "/web/":[
-              ["", "前端"],
+            "/web/html":[
+              ["", "html"],
               {
                 title: "css",
                 name: "css",
