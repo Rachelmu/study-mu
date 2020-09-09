@@ -59,8 +59,18 @@ module.exports = {
             //     ]
             //   }
             // ]
-            'javaScript':[
-              'es6'
+            '/frame/vue/': [
+              '',      /* Vue */
+              'VueDes', /* /frame/vue/VueDes.html */
+              'VueBase', /* /frame/vue/VueBase.html */
+              'VueAnalysis', /* /frame/vue/VueAnalysis.html */
+              'Vuex'   /* /frame/vue/Vuex.html */
+            ],
+              // fallback
+            '/': [
+              '',        /*  */
+              'contact', /* contact.html */
+              'about'    /* about.html */
             ]
         }
     }
