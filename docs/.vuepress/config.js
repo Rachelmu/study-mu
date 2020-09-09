@@ -33,32 +33,35 @@ module.exports = {
           { text: "前端工程化", link: "/engineering/"},
           { text: "面试问题", link: "/interview/" }
         ],
-        sidebar: 'auto'
-        // sidebar:{
-        //     "/web/css":[
-        //       ["", "css基础"],
-        //       {
-        //         title: "css",
-        //         name: "css",
-        //         collabsable: false,
-        //         children: [
-        //           ["css/", "目录"],
-        //           ['css/', "css常考面试题"]
-        //         ]
-        //       }
-        //     ],
-        //     "/web/html":[
-        //       ["", "html"],
-        //       {
-        //         title: "css",
-        //         name: "css",
-        //         collabsable: false,
-        //         children: [
-        //           ["css/", "目录"],
-        //           ['css/1', "css常考面试题"]
-        //         ]
-        //       }
-        //     ]
-        // }
+        // sidebar: 'auto'
+        sidebar:{
+            // "/web/css":[
+            //   ["", "css基础"],
+            //   {
+            //     title: "css",
+            //     name: "css",
+            //     collabsable: false,
+            //     children: [
+            //       ["css/", "目录"],
+            //       ['css/', "css常考面试题"]
+            //     ]
+            //   }
+            // ],
+            // "/web/html":[
+            //   ["", "html"],
+            //   {
+            //     title: "css",
+            //     name: "css",
+            //     collabsable: false,
+            //     children: [
+            //       ["css/", "目录"],
+            //       ['css/1', "css常考面试题"]
+            //     ]
+            //   }
+            // ]
+            'javaScript':[
+              'es6'
+            ]
+        }
     }
   }
