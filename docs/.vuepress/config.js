@@ -17,7 +17,7 @@ module.exports = {
               { text: "html", link:"/web/html/"},
               { text: "css", link:"/web/css/"},
               { text: "javascript", link:"/javaScript/"},
-              { text: "es6", link:"/javaScript/es6"},
+              { text: "es6", link:"/javaScript/es6/"},
             ]
           },
           { text: "前端框架",
@@ -35,30 +35,17 @@ module.exports = {
         ],
         // sidebar: 'auto'
         sidebar:{
-            // "/web/css":[
-            //   ["", "css基础"],
-            //   {
-            //     title: "css",
-            //     name: "css",
-            //     collabsable: false,
-            //     children: [
-            //       ["css/", "目录"],
-            //       ['css/', "css常考面试题"]
-            //     ]
-            //   }
-            // ],
-            // "/web/html":[
-            //   ["", "html"],
-            //   {
-            //     title: "css",
-            //     name: "css",
-            //     collabsable: false,
-            //     children: [
-            //       ["css/", "目录"],
-            //       ['css/1', "css常考面试题"]
-            //     ]
-            //   }
-            // ]
+              '/web/css/':[
+              '',  /* css */
+              'flex', /* /web/css/flex.html */
+            ],
+            '/javaScript/': [
+              '',      /* JS */
+              'VueDes', /* /javaScript/.html */
+              'VueBase', /* /javaScript/VueBase.html */
+              'VueAnalysis', /* /javaScript/VueAnalysis.html */
+              'Es6'   /* /javaScript/es6/es6Base.html */
+            ],
             '/frame/vue/': [
               '',      /* Vue */
               'VueDes', /* /frame/vue/VueDes.html */
