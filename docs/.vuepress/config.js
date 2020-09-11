@@ -16,7 +16,7 @@ module.exports = {
             items: [ 
               { text: "html", link:"/web/html/"},
               { text: "css", link:"/web/css/"},
-              { text: "javascript", link:"/javaScript/"},
+              { text: "javascript", link:"/javaScript/js/"},
               { text: "es6", link:"/javaScript/es6/"},
             ]
           },
@@ -39,17 +39,21 @@ module.exports = {
               '',  /* css */
               'flex', /* /web/css/flex.html */
             ],
-            '/javaScript/': [
+            '/javaScript/js/': [
               '',      /* JS */
-              'VueDes', /* /javaScript/.html */
-              'VueBase', /* /javaScript/VueBase.html */
-              'VueAnalysis', /* /javaScript/VueAnalysis.html */
-              'Es6'   /* /javaScript/es6/es6Base.html */
+              'jsSixAcrobatics', /* /javaScript/js/jsSixAcrobatics.html */
+
+            ],
+            '/javaScript/es6/': [
+              '',      /* es6 */
+              'es6Base', /* /javaScript/es6/es6Base.html */
+
             ],
             '/frame/vue/': [
               '',      /* Vue */
               'VueDes', /* /frame/vue/VueDes.html */
               'VueBase', /* /frame/vue/VueBase.html */
+              'VueTemplate', /* /frame/vue/VueTemplate.html */
               'VueAnalysis', /* /frame/vue/VueAnalysis.html */
               'Vuex'   /* /frame/vue/Vuex.html */
             ],
