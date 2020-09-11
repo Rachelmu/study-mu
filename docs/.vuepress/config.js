@@ -31,7 +31,8 @@ module.exports = {
           { text: "http", link: "/http/"},
           { text: "数据结构与算法", link: "/arithmetic/"},
           { text: "前端工程化", link: "/engineering/"},
-          { text: "面试问题", link: "/interview/" }
+          { text: "面试问题", link: "/interview/" },
+          { text: "前端知识库", link: "/knowledge/" }
         ],
         // sidebar: 'auto'
         sidebar:{
@@ -53,6 +54,7 @@ module.exports = {
               '',      /* Vue */
               'VueDes', /* /frame/vue/VueDes.html */
               'VueBase', /* /frame/vue/VueBase.html */
+              'VueComponents', /* /frame/vue/VueComponents.html */
               'VueTemplate', /* /frame/vue/VueTemplate.html */
               'VueAnalysis', /* /frame/vue/VueAnalysis.html */
               'Vuex'   /* /frame/vue/Vuex.html */
