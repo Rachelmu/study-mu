@@ -64,3 +64,126 @@ prop 定义了这个组件有哪些可配置的属性，组件的核心功能也
   + data 被称之为动态数据，在各自实例中，在任何情况下，我们都可以随意改变它的数据类型和数据结构，不会被任何环境所影响。
   + props 被称之为静态数据，在各自实例中，一旦在初始化被定义好类型时，基于 Vue 是单向数据流，在数据传递时始终不能改变它的数据类型，而且不允许在子组件中直接操作 传递过来的props数据，而是需要通过别的手段，改变传递源中的数据。至于如何改变，我们接下去详细介绍：
 
+### 4.单向数据流
+这个概念出现在组件通信。props的数据都是通过父组件或者更高层级的组件数据或者字面量的方式进行传递的，不允许直接操作改变各自实例中的props数据，而是需要通过别的手段，改变传递源中的数据。那如果有时候我们想修改传递过来的prop,有哪些办法呢？
+
+#### 方法1：过渡到 data 选项中
+- 在子组件的 data 中拷贝一份 prop，data 是可以修改的
+``` js
+export default {
+  props: {
+    type: String
+  },
+  data () {
+    return {
+      currentType: this.type
+    }
+  }
+}
+
+```
+- 在 data 选项里通过 currentType接收 props中type数据，相当于对 currentType= type进行一个赋值操作，不仅拿到了 currentType的数据，而且也可以改变 currentType数据。
+
+#### 方法2：利用计算属性
+``` js
+export default {
+  props: {
+    type: String
+  },
+  computed: {
+    normalizedType: function () {
+      return this.type.toUpperCase();
+    }
+  }
+}
+
+```
+
+以上两种方法虽可以在子组件间接修改props的值，但如果子组件想修改数据并且同步更新到父组件，却无济于事。在一些情况下，我们可能会需要对一个 prop 进行『双向绑定』，此时就推荐以下这两种方法：
+
+#### 方法3：使用.sync
+``` js
+// 父组件
+<template>
+  <div class="hello">
+    <div>
+      <p>父组件msg：{{ msg }}</p>
+      <p>父组件数组：{{ arr }}</p>
+    </div>
+    <button @click="show = true">打开model框</button>
+    <br />
+    <demo :show.sync="show" :msg.sync="msg" :arr="arr"></demo>
+  </div>
+</template>
+
+<script>
+import Demo from "./demo.vue";
+export default {
+  name: "Hello",
+  components: {
+    Demo
+  },
+  data() {
+    return {
+      show: false,
+      msg: "模拟一个model框",
+      arr: [1, 2, 3]
+    };
+  }
+};
+</script>
+
+// 子组件
+<template>
+  <div v-if="show" class="border">
+    <div>子组件msg：{{ msg }}</div>
+    <div>子组件数组：{{ arr }}</div>
+    <button @click="closeModel">关闭model框</button>
+    <button @click="$emit('update:msg', '浪里行舟')">
+      改变文字
+    </button>
+    <button @click="arr.push('前端工匠')">改变数组</button> 
+  </div>
+</template>
+<script>
+export default {
+  props: {
+    msg: {
+      type: String
+    },
+    show: {
+      type: Boolean
+    },
+    arr: {
+      type: Array //在子组件中改变传递过来数组将会影响到父组件的状态
+    }
+  },
+  methods: {
+    closeModel() {
+      this.$emit("update:show", false);
+    }
+  }
+};
+
+```
+父组件向子组件 props 里传递了 msg 和 show 两个值，都用了.sync 修饰符，进行双向绑定。 不过.sync 虽好，但也有限制，比如：
+::: warning 限制
+1）不能和表达式一起使用（如v-bind:title.sync="doc.title + '!'"是无效的）；  
+2）不能用在字面量对象上（如v-bind.sync="{ title: doc.title }"是无法正常工作的）。
+:::
+
+#### 方法4：将父组件中的数据包装成对象传递给子组件
+- 这是因为在 JavaScript 中对象和数组是通过引用传入的，所以对于一个数组或对象类型的 prop 来说，在子组件中改变这个对象或数组本身将会影响到父组件的状态。比如上例中在子组件中修改父组件传递过来的数组arr,从而改变父组件的状态。
+
+### 5.向子组件中传递数据时加和不加 v-bind？
+对于字面量语法和动态语法，初学者可能在父组件模板中向子组件中传递数据时到底加和不加 v-bind 会感觉迷惑。
+:::
+v-bind:msg = 'msg'
+:::
+
+
+
+
+
+
+
