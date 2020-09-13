@@ -309,5 +309,87 @@ export default {
   }
 };
 </script>
+
+// 子组件
+<template>
+  <div>
+    <li class="item">
+      <input v-model="checked" type="checkbox" />
+      <slot name="item" :checked="checked"></slot> // 将checked的值传递给父组件
+    </li>
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      checked: false
+    };
+  }
+};
+</script>
+
 ```
 
+值得注意：v-bind:style 的对象语法十分直观——看着非常像 CSS，但其实是一个 JavaScript 对象。CSS 属性名可以用驼峰式 (camelCase) 或短横线分隔 (kebab-case，记得用引号括起来) 来命名。
+
+### 2.v-slot新语法
+在 2.6.0 中，我们为具名插槽和作用域插槽引入了一个新的统一的语法 (即 v-slot 指令)。它取代了 slot 和 slot-scope 。我们来思考个问题：相同名称的插槽是合并还是替换？
+
+- Vue2.5版本，普通插槽合并、作用域插槽替换
+- Vue2.6版本，都是替换(见下面例子)
+
+我们通过一个例子介绍下Vue2.6版本默认插槽、具名插槽和作用域插槽的新语法：
+
+``` js
+// 父组件
+<template>
+  <div class="helloSlot">
+    <h2>2.6 新语法</h2>
+    <SlotDemo>
+      <p>默认插槽：default slot</p>
+      <template v-slot:title>
+        <p>具名插槽：title slot1</p>
+        <p>具名插槽：title slot2</p>
+      </template>
+      <template v-slot:title>
+        <p>new具名插槽：title slot1</p>
+        <p>new具名插槽：title slot2</p>
+      </template>
+      <template v-slot:item="props">
+        <p>作用域插槽：item slot-scope {{ props }}</p>
+      </template>
+    </SlotDemo>
+  </div>
+</template>
+<script>
+import Slot from "./slot";
+export default {
+  components: {
+    SlotDemo: Slot
+  }
+};
+</script>
+
+
+// 子组件
+<template>
+  <div>
+    <slot />
+    <slot name="title" />
+    <slot name="item" :propData="propData" />  // propData这个属性名可以任意取
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      propData: {
+        value: "浪里行舟"
+      }
+    };
+  }
+};
+</script>
+
+```

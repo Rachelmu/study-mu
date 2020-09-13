@@ -59,6 +59,11 @@ module.exports = {
               'VueAnalysis', /* /frame/vue/VueAnalysis.html */
               'Vuex'   /* /frame/vue/Vuex.html */
             ],
+            '/interview/': [
+              '',      /* JS */
+              'es6', /* /interview/es6.html */
+
+            ],
               // fallback
             '/': [
               '',        /*  */
