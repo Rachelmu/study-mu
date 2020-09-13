@@ -262,5 +262,52 @@ Vue 提供了大量的修饰符封装了这些过滤和判断，让开发者少�
 <a v-on:click.stop.prevent="doThat"></a>
 
 ```
+## 插槽
 
+插槽分为普通插槽和作用域插槽，其实两者很类似，只不过作用域插槽可以接受子组件传递过来的参数。
+
+### 1.作用域插槽
+我们不妨通过一个todolist的例子来了解作用域插槽。如果当item选中后，文字变为黄色，该如何实现呢？
+``` js
+// 父组件
+<template>
+  <div class="toList">
+    <input v-model="info" type="text" /> <button @click="addItem">添加</button>
+    <ul>
+      <TodoItem v-for="(item, index) in listData" :key="index">
+        <template v-slot:item="itemProps"> // 这是个具名插槽
+        // 其中itemProps的值就是子组件传递过来的对象
+          <span
+            :style="{
+              fontSize: '20px',
+              color: itemProps.checked ? 'yellow' : 'blue'
+            }"
+            >{{ item }}</span
+          >
+        </template>
+      </TodoItem>
+    </ul>
+  </div>
+</template>
+<script>
+import TodoItem from "./TodoItem";
+export default {
+  components: {
+    TodoItem
+  },
+  data() {
+    return {
+      info: "",
+      listData: []
+    };
+  },
+  methods: {
+    addItem() {
+      this.listData.push(this.info);
+      this.info = "";
+    }
+  }
+};
+</script>
+```
 
