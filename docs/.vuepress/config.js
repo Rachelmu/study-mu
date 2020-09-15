@@ -42,6 +42,7 @@ module.exports = {
             ],
             '/javaScript/js/': [
               '',      /* JS */
+              'function', /* /javaScript/js/function.html */
               'jsSixAcrobatics', /* /javaScript/js/jsSixAcrobatics.html */
 
             ],
