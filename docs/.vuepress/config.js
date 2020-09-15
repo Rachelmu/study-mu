@@ -62,13 +62,17 @@ module.exports = {
             ],
             '/interview/': [
               '',      /* JS */
-              'es6', /* /interview/es6.html */
-              'jsHigh', /* /interview/jsHigh.html */
               'html', /* /interview/html.html */
               'css', /* /interview/css.html */
               'js', /* /interview/js.html */
+              'jsHigh', /* /interview/jsHigh.html */
+              'es6', /* /interview/es6.html */
+              'TypeScript', /* /interview/TypeScript.html */
               'vue', /* /interview/vue.html */
               'react', /* /interview/react.html */
+              'node', /* /interview/node.html */
+              'arithmetic', /* /interview/arithmetic.html */
+              'performance', /* /interview/performance.html */
             ],
               // fallback
             '/': [

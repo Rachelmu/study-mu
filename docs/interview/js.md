@@ -1,4 +1,43 @@
 # js基础面试题
+
+## JavaScript
+
+[面试题](https://github.com/Advanced-Frontend/Daily-Interview-Question/blob/master/datum/summary.md)
+
+### JS运行机制
+
+- 关键词: 单线程 => 同步任务和异步任务
+- 同步任务在主线程上执行，形成一个执行栈
+- 主线程之外，事件触发线程管理着一个任务队列，只要异步任务有了运行结果，就在任务队列之中放置一个事件
+- 一旦执行栈中的所有同步任务执行完毕（此时JS引擎空闲），系统就会读取任务队列，将可运行的异步任务添加到可执行栈中，开始执行
+
+### 变量提升和函数提升
+
+- 函数优先。函数声明和变量声明都会被提升，但是函数会首先被提升，然后才是变量
+
+- 实例
+
+  ```javascript
+  foo(); // 1
+  var foo;
+  function foo() { console.log( 1 );
+  }
+  foo = function() { console.log( 2 );
+  };
+  ```
+
+  会被引擎解析诚如下代码
+
+  ```javascript
+  function foo() { console.log( 1 );
+  }
+  foo(); // 1
+  foo = function() { console.log( 2 );
+  };
+  ```
+
+- 注意，var foo 尽管出现在 function foo()... 的声明之前，但它是重复的声明(因此被忽 略了)，因为函数声明会被提升到普通变量之前。
+
 ## 数据类型
 
 ### JS判断数组的5种方式
@@ -220,244 +259,11 @@ function mySetInterval(fn, millisec,count){
 
 ### 写一个 promise 重试函数，可以设置时间间隔和次数。`function foo(fn, interval, times) {}`
 
-
-
-# DOM
+## DOM
 
 1. cookie有哪些属性
 2. cookie,session,localstorage,sessionstorage有什么区别
 3. 怎么禁止js访问cookie
-
-# 网络
-
-1. 简述https原理，以及与http的区别
-2. 操作系统中进程和线程怎么通信
-3. 你知道哪些http头部
-4. 怎么与服务端保持连接
-5. http请求跨域问题，你都知道哪些解决跨域的方法
-6. 你了解哪些请求方法，分别有哪些作用和不同
-7. 浏览器缓存
-8. jsonp实现一下跨域
-9. 你知道哪些状态码
-10. options请求方法有什么用
-
-## 浏览器缓存
-
-+ 浏览器缓存分为**强缓存**和**协商缓存**，强缓存会直接从浏览器里面拿数据，协商缓存会先访问服务器看缓存是否过期，再决定是否从浏览器里面拿数据。
-+ 控制强缓存的字段有：Expires 和 Cache-Control，Expires 和 Cache-Control。
-+ 控制协商缓存的字段是：Last-Modified / If-Modified-Since 和 Etag / If-None-Match，其中 Etag / If-None-Match 的优先级比 Last-Modified / If-Modified-Since 高。
-
-# VUE
-
-1. vue-router源码
-2. vue原理（手写代码，实现数据劫持）
-3. Object.defineProperty除了set get外还有什么属性，我回答了configurable enumerable
-
-## 有用 ssr 
-
-
-
-# React
-
-+ [https://react.iamkasong.com/#%E7%AB%A0%E8%8A%82%E8%AF%B4%E6%98%8E](https://react.iamkasong.com/#章节说明)
-
-## react 的基本原理
-
-+ UI = f(state) ，虚拟 DOM、diff 策略、setState
-
-## Rreact事件机制
-
-+ 一文吃透 React 事件机制原理: *https://toutiao.io/posts/28of14w/preview*
-+ React 为什么要用合成事件
-+ 事件机制：注册和分发的过程。这里面至少要说出事件注册都是在元素的最顶层 `document` 节点上。
-
-## 聊聊 React 的 diff
-
-聊 diff 建议先看看我之前写过的一篇关于虚拟 DOM 的文章：[从 React 历史的长河里聊虚拟 DOM 及其价值](https://mp.weixin.qq.com/s?__biz=MzI1ODk2Mjk0Nw==&mid=2247484879&idx=1&sn=ee0d2e3e235fa911ce2878ae2ea2b676&scene=21#wechat_redirect)，有助于理解 diff 的意义。
-
-diff 的细节可以看我之前写的：[详解 React 16 的 Diff 策略](https://mp.weixin.qq.com/s?__biz=MzI1ODk2Mjk0Nw==&mid=2247484536&idx=1&sn=94777b8c1aab80dffe1fc224bec02c72&scene=21#wechat_redirect)
-
-## React 优化
-
-可以看之前我写的 [React 函数式组件性能优化指南](https://mp.weixin.qq.com/s?__biz=MzI1ODk2Mjk0Nw==&mid=2247484774&idx=1&sn=9dc58e54a28755504d58bef49a78f3b4&scene=21#wechat_redirect)，对于类组件也有对应的 API。
-
-## 聊一聊 React 的生命周期
-
-+ 尽量把 React 15 和 16 的进行对比，然后 16 为什么要准备废除那几个生命周期，以及新增的生命周期可以进行替代。
-+ 这个图好好的理解一下![640](/Users/mumu/Documents/webExercise/640.jpeg)
-
-### react 16 生命周期有什么改变
-
-```
-componentWillMount`，`componentWillReceiveProps`，`componentWillUpdate`准备废除，新增了 `static getDerivedStateFromProps` 和 `getSnapshotBeforeUpdate
-```
-
-我还详细的介绍了为什么要用 `getDerivedStateFromProps` 来代替即将废除的三个生命周期，主要是 16 版本 render 之前的生命周期可能会被多次执行，具体的可看我的这篇文章：[Deep In React 之浅谈 React Fiber 架构(一)](https://mp.weixin.qq.com/s?__biz=MzI1ODk2Mjk0Nw==&mid=2247484469&idx=1&sn=f68d044f1b0e4e2eb981e3878427b75b&scene=21#wechat_redirect)
-
-### getDerivedStateFromProps
-
-
-
-
-
-## 聊一聊 hooks 怎么处理生命周期
-
-+ 讲道理函数式组件是没有生命周期的，但是如何去模拟类组件的生命周期的作用，都是在 `useEffect` 里面进行操作的，因为生命周期里面所做的基本都是副作用，放到 `useEffect` 里是最合适的，专门用来处理副作用。
-
-## 那你聊聊 React 的源码，把你记得起的讲一讲
-
-> 我看过 React 的一部分源码的，所以关于 React 源码更新部分的东西，应该基本都能说个大概。
-
-- FiberNode 有哪些属性
-- stadeNode 有什么用？
-
-## react基础问题
-
-### react 里有动态加载的 api 吗？
-
-+ React.lazy
-
-### React.lazy原理
-
-
-
-## redux 的重点概念
-
-+ store、reduce、action、actionCreater、dispatch
-+ 状态管理常用的是 redux 和 dva，然后再聊了聊区别已经 redux 的理念
-
-### 实现一个 redux
-
-+ 实现 `createStore` 的功能，关键点发布订阅的功能，以及取消订阅的功能。
-
-## class 组件与函数式组件的区别
-
-+ 生命周期、设计理念，感觉这道题比较开发，可以看看 dan 的这篇：**函数式组件与类组件有何不同？**[3]
-+ 函数式组件与类组件有何不同？: *https://overreacted.io/zh-hans/how-are-function-components-different-from-classes/*
-
-# 算法
-
-1. 算法：实现36进制转换
-2. 树的遍历有几种方式，实现下层次遍历
-3. 判断对称二叉树
-4. 合并乱序区间
-5. 算法题：老师分饼干，每个孩子只能得到一块饼干，但每个孩子想要的饼干大小不尽相同。目标是尽量让更多的孩子满意。如孩子的要求是 1, 3, 5, 4, 2，饼干是1, 1，最多能让1个孩子满足。如孩子的要求是 10, 9, 8, 7, 6，饼干是7, 6, 5，最多能让2个孩子满足。
-6. 算法题：给定一个正整数数列a, 对于其每个区间, 我们都可以计算一个X值;X值的定义如下: 对于任意区间, 其X值等于区间内最小的那个数乘上区间内所有数和;现在需要你找出数列a的所有区间中, X值最大的那个区间;如数列a为: 3 1 6 4 5 2; 则X值最大的区间为6, 4, 5, X = 4 * (6+4+5) = 60;
-7. 算法题：两个有序链表和并成一个有序链表
-
-### 怎么判断单链表相交。
-
-+ 很多种方法，我当时说的是最后一个节点如果相同，那么就代表相交。
-
-### 怎么找到第一个相交的节点
-
-+ 同时遍历两个链表到尾部，同时记录两个链表的长度。若两个链表最后的一个节点相同，则两个链表相交。有两个链表的长度后，我们就可以知道哪个链表长，设较长的链表长度为 len1,短的链表长度为 len2。则先让较长的链表向后移动(len1-len2)个长度。然后开始从当前位置同时遍历两个链表，当遍历到的链表的节点相同时，则这个节点就是第一个相交的节点。
-+ 这是我刚想到的一种方式，不过当时面试的时候我记得好像更简单，但是想不起来了。
-
-### 求最大公共前缀
-
-+ 如 `['aaafsd', 'aawwewer', 'aaddfff'] => 'aa'`
-
-# 模块化
-
-## import 和 require 导入的区别
-
-+ 高频题，考察 ES6 模块和 CommonJS 模块 的区别。关键点：1. 前者是值的引用，后者是值的拷贝。2.前者编译时输出接口，后者运行时加载。
-
-+ 推荐文章：**前端模块化：CommonJS,AMD,CMD,ES6**[4]
-
-+ 前端模块化：CommonJS,AMD,CMD,ES6: *https://juejin.im/post/5aaa37c8f265da23945f365c*
-
-  
-
-### require 有什么性能问题
-
-## 组件库如何做按需加载
-
-+ 我常用的是`babel-plugin-import`
-+ 
-
-# 工程化
-
-1. webpack怎么优化
-2. happypack和treeshaking作用
-3. 项目优化
-4. 你做的项目有什么值得说的
-
-## Webpack
-
-### webpack 如何实现动态加载
-
-+ 讲道理 webpack 动态加载就两种方式：`import()`和 `require.ensure`，不过他们实现原理是相同的。
-+ 我觉得这道题的重点在于动态的创建 script 标签，以及通过 `jsonp` 去请求 **chunk**，推荐的文章是：**webpack 是如何实现动态导入的**[5]
-+ webpack 是如何实现动态导入的: *https://juejin.im/post/5d26e7d1518825290726f67a*
-
-### webpack 能动态加载 require 引入的模块吗？
-
-+ 应该是不能的，前面说了，webpack 支持动态导入基本上只能用`import()` 和`require.ensure`。
-
-### require 引入的模块 webpack 能做 Tree Shaking 吗？
-
-+ 不能，Tree Shaking 需要静态分析，只有 ES6 的模块才支持。
-
-# 性能优化
-
-## 简历里面的性能优化是如何做的
-
-+ 减少请求频率、图片压缩、`React.memo`、`React.useMemo`
-
-  
-
-## 框架性能优化
-
-### 如何优化SPA应用的首屏加载速度慢的问题
-
-- 将公用的JS库通过script标签外部引入，减小app.bundel的大小，让浏览器并行下载资源文件，提高下载速度；
-- 在配置 路由时，页面和组件使用懒加载的方式引入，进一步缩小 app.bundel 的体积，在调用某个组件时再加载对应的js文件；
-- 加一个首屏 loading 图，提升用户体验；
-- 如果在webview中的页面，可以进行页面预加载
-- 独立打包异步组件公共 Bundle，以提高复用性&缓存命中率
-- 静态文件本地缓存，有两种方式分别为HTTP缓存，设置Cache-Control，Last-Modified，Etag等响应头和Service Worker离线缓存
-- 配合 PWA 使用
-- SSR
-- root中插入loading 或者 骨架屏 prerender-spa-plugin
-- 去掉外链css
-- http缓存资源 cache-control > expires > etag > last-modified
-- 使用动态 polyfill
-- 使用 SplitChunksPlugin 自动拆分业务基础库，避免加载重复模块
-- 使用 Tree Shaking 减少业务代码体积
-- 懒加载：动态import，loaddable
-- 把代码编译到 ES2015+
-- 使用 lazyload 和 placeholder 提升加载体验
-
-## class 组件里面如何做性能优化(因为前面我说了用 React.memo 做了性能优化)
-
-+ shouldComponentUpdate(简称 SCU)。SCU 跟 immutable 强相关，一定要好好理解 react 的 immutable，否则很可能理解不了为什么不能直接去修改 state，然后再去 setState，以及 redux 的 reducer 要返回一个新的对象。
-
-# Node
-
-1. node中cluster是怎样开启多进程的，并且一个端口可以被多个进程监听吗
-2. 你了解node多进程吗
-3. node进程中怎么通信
-4. node可以开启多线程吗
-
-# typescript
-
-1. 你觉得typescript和javascript有什么区别
-2. typescript你都用过哪些类型
-3. typescript中type和interface的区别
-4. Ts 有什么优势- 讲道理所有现在在网上能查到的优势都是得益于**静态语言**的优势。
-
-### 实现一个 Typescript 里的 Pick
-
-+ type Pick<T, K extends keyof T> = { [P in K]: T[P] }
-
-### type 和 interface 的区别
-
-+ 这是一个高频题，如果考察 TS，这应该是最容易考察的，网上也都能查到相关的资料，但是很可能忽略一个点：**type 只是一个类型别名，并不会产生类型**。所以其实 type 和 interface 其实不是同一个概念，其实他们俩不应该用来比较的，只是有时候用起来看着类似。
-
-###  ts 实现一个 redux
-
 
 
 # 笔试题
@@ -508,18 +314,506 @@ console.log(youbick.name)
 
 
 
+### 防抖和节流
+
+1. 防抖：在事件被触发N秒后在执行回调，如果在这N秒内又被触发，则重新计时
+   - 实现思路：通过闭包保存一个标记来保存 setTimeout 返回的值，每当用户输入的时候把前一个 setTimeout clear 掉，然后又创建一个新的 setTimeout，这样就能保证输入字符后的 interval 间隔内如果还有字符输入的话，就不会执行 fn 函数了。
+
+```javascript
+function debounce(fn, interval = 300) {
+    let timeout = null;
+    return function () {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            fn.apply(this, arguments);
+        }, interval);
+    };
+}
+function scroll(e) {console.log(e)}
+window.onscroll = debounce(scroll, 500)
+```
+2. 节流：规定一个单位时间，在这个单位时间内，只能执行一次回调，如果触发了多次，只有一次生效
+   - 实现思路: 函数的节流就是通过闭包保存一个标记（canRun = true），在函数的开头判断这个标记是否为 true，如果为 true 的话就继续执行函数，否则则 return 掉，判断完标记后立即把这个标记设为 false，然后把外部传入的函数的执行包在一个 setTimeout 中，最后在 setTimeout 执行完毕后再把标记设置为 true（这里很关键），表示可以执行下一次的循环了。当 setTimeout 还未执行的时候，canRun 这个标记始终为 false，在开头的判断中被 return 掉。
+
+```javascript
+function throttle(fn, interval = 300) {
+    let canRun = true;
+    return function () {
+        if (!canRun) return;
+        canRun = false;
+        setTimeout(() => {
+            fn.apply(this, arguments);
+            canRun = true;
+        }, interval);
+    };
+}
+```
 
 
 
+### 深拷贝和浅拷贝
 
-**考虑过 Vue.js、React 这类的框架为什么要用 Virtual DOM 机制吗？**
+- 浅拷贝
+  - 浅拷贝就是拷贝指向对象的指针,意思就是说:拷贝出来的目标对象的指针和源对象的指针指向的内存空间是同一块空间.
+  - 浅拷贝只是一种简单的拷贝,让几个对象公用一个内存,然而当内存销毁的时候,指向这个内存空间的所有指针需要重新定义,不然会造成野指针错误
+- 深拷贝
+  - 所谓的深拷贝指拷贝对象的具体内容,其内容地址是自助分配的,拷贝结束之后,内存中的值是完全相同的,但是内存地址是不一样的,两个对象之间相互不影响,也互不干涉.
 
-1、React / Vue.js 之类的框架为什么需要给组件添加 key 属性，其作用是什么？
+### bind、call、apply
 
-2、如何判断当前代码是运行在浏览器还是 Node.js 环境中？
+- 第一个参数都是改变this的上下文，改变this指向
+- bind：改变this指向，但不会马上执行，而是返回一个函数
+- call：第二个参数开始以参数列表的形式展现
+- apply: 第二个参数接受一个数组
 
-3、Sourcemap 是什么？有什么作用？生产环境中应该怎么用？
+### async/await
 
-4、说一下 Webpack 的热更新原理吧
+- `async/await`实际上是`Generator`的语法糖。顾名思义，`async`关键字代表后面的函数中有异步操作，`await`表示等待一个异步方法执行完成。
 
-5、简要描述一下什么是消息队列，宏任务和微任务分别又是怎么回事
+  ```javascript
+  async function func() {
+    console.log('async function is running!');
+    const num1 = await 200;
+    console.log(`num1 is ${num1}`);
+    const num2 = await num1+ 100;
+    console.log(`num2 is ${num2}`);
+    const num3 = await num2 + 100;
+    console.log(`num3 is ${num3}`);
+  }
+  
+  func();
+  console.log('run me before await!');
+  // async function is running!
+  // run me before await!
+  // num1 is 200
+  // num2 is 300
+  // num3 is 400
+  ```
+
+- 错误捕获
+
+  - try/catch
+  - Promise.then
+
+### Array方法
+
+- some: 测试是否至少有一个元素可以通过被提供的函数方法。返回布尔值
+
+- every: 测试一个数组内的所有元素是否都能通过某个指定函数的方法。返回布尔值
+
+- reduce: 对数组中的每一个元素执行一个由您提供的reduce函数，将其结果汇总为单个返回值
+
+- flat: 按照一个可指定的深度递归遍历数组，并将所有元素与遍历到的子数组中的元素合并为一个新数组返回。
+
+  - ```javascript
+    var arr1 = [1, 2, [3, 4]];
+    arr1.flat(); 
+    // [1, 2, 3, 4]
+    
+    var arr2 = [1, 2, [3, 4, [5, 6]]];
+    arr2.flat();
+    // [1, 2, 3, 4, [5, 6]]
+    
+    var arr3 = [1, 2, [3, 4, [5, 6]]];
+    arr3.flat(2);
+    // [1, 2, 3, 4, 5, 6]
+    
+    //使用 Infinity 作为深度，展开任意深度的嵌套数组
+    arr3.flat(Infinity); 
+    // [1, 2, 3, 4, 5, 6]
+    ```
+
+### 原型和原型链
+
+- [详解](https://www.jianshu.com/p/dee9f8b14771)
+
+- 所有函数对象的 __proto__ 都指向 Function.prototype，它是一个空函数（Empty function）
+
+- 所有对象的 __proto__ 都指向其构造器的 prototype
+
+  ```javascript
+  function Person(name) {
+    this.name = name;
+  }
+  var p = new Person('jack')
+  console.log(p.__proto__ === Person.prototype) // true
+  ```
+
+- 实例对象的内部原型总是指向其构造器的原型对象prototype
+
+  ```javascript
+  function Person(name) {
+      this.name = name
+  }
+  var p = new Person('jack')
+  console.log(p.__proto__ === p.constructor.prototype) // true
+  ```
+
+- Function.prototype.__proto__ === Object.prototype //true
+- `Object.prototype.__proto__ === null`，保证原型链能够正常结束
+
+### class, extends, super
+
+- class: 创建一个带有作用域的对象
+- extends: class可以通过extends实现继承
+- super: 表示父类的构造函数，用来新建父类的this对象
+
+```
+  class Point {
+  }
+
+  class ColorPoint extends Point {
+    constructor(x, y, color) {
+        super(x, y); // 调用父类的constructor(x, y)
+        this.color = color;
+    }
+
+    toString() {
+        return this.color + ' ' + super.toString(); // 调用父类的toString()
+    }
+  }
+```
+
+### Cookie,LocalStorage,SessionStorage
+
+| 特性           | Cookie                                                       | LocalStorage                                                | SessionStorage                               |
+| -------------- | ------------------------------------------------------------ | ----------------------------------------------------------- | -------------------------------------------- |
+| 数据的生命期   | 一般由服务器生成，可设置失效时间。如果在浏览器端生成Cookie，默认是关闭浏览器后失效 | 除非被清除，否则永久保存                                    | 仅在当前会话下有效，关闭页面或浏览器后被清除 |
+| 存放数据大小   | 4K左右                                                       | 一般为5MB                                                   |                                              |
+| 与服务器端通信 | 每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题 | 仅在客户端（即浏览器）中保存，不参与和服务器的通信          |                                              |
+| 易用性         | 需要程序员自己封装，源生的Cookie接口不友好                   | 源生接口可以接受，亦可再次封装来对Object和Array有更好的支持 |                                              |
+
+### 阻塞渲染：CSS 与 JavaScript
+
+**css**
+
+- CSS被视为阻塞渲染的资源，这意味着浏览器将不会渲染任何已处理的内容，直至 CSSOM 构建完毕。
+- 存在阻塞的 CSS 资源时，浏览器会延迟 JavaScript 的执行和 DOM 构建。
+- CSSOM 构建时，JavaScript 执行将暂停，直至 CSSOM 就绪。
+
+```
+<style> p { color: red; }</style>
+<link rel="stylesheet" href="index.css">
+```
+
+- 这样的 link 标签（无论是否 inline）会被视为阻塞渲染的资源，浏览器会优先处理这些 CSS 资源，直至 CSSOM 构建完毕。
+
+```
+<link href="index.css" rel="stylesheet">
+<link href="print.css" rel="stylesheet" media="print">
+<link href="other.css" rel="stylesheet" media="(min-width: 30em) and (orientation: landscape)">
+```
+
+- 第一个资源会加载并阻塞。
+- 第二个资源设置了媒体类型，会加载但不会阻塞，print 声明只在打印网页时使用。
+- 第三个资源提供了媒体查询，会在符合条件时阻塞渲染。
+
+**JavaScript**
+
+- 当浏览器遇到一个 script 标记时，DOM 构建将暂停，直至脚本完成执行。
+
+### 改变阻塞模式：defer 与 async
+
+**defer**
+
+```
+<script src="app1.js" defer></script>
+<script src="app2.js" defer></script>
+<script src="app3.js" defer></script>
+```
+
+- defer 属性表示延迟执行引入的 JavaScript，即这段 JavaScript 加载时 HTML 并未停止解析，这两个过程是并行的。整个 document 解析完毕且 defer-script 也加载完成之后（这两件事情的顺序无关），会执行所有由 defer-script 加载的 JavaScript 代码，然后触发 DOMContentLoaded 事件。
+- defer 不会改变 script 中代码的执行顺序，示例代码会按照 1、2、3 的顺序执行。所以，defer 与相比普通 script，有两点区别：载入 JavaScript 文件时不阻塞 HTML 的解析，执行阶段被放到 HTML 标签解析完成之后。
+
+**async**
+
+```
+script src="app.js" async></script>
+<script src="ad.js" async></script>
+<script src="statistics.js" async></script>
+```
+
+- async 属性表示异步执行引入的 JavaScript，与 defer 的区别在于，如果已经加载好，就会开始执行——无论此刻是 HTML 解析阶段还是 DOMContentLoaded 触发之后。
+
+### 对象到字符串的转换步骤
+
+1. 如果对象有toString()方法，javascript调用它。如果返回一个原始值（primitive value如：string number boolean）,将这个值转换为字符串作为结果
+2. 如果对象没有toString()方法或者返回值不是原始值，javascript寻找对象的valueOf()方法，如果存在就调用它，返回结果是原始值则转为字符串作为结果
+3. 否则，javascript不能从toString()或者valueOf()获得一个原始值，此时throws a TypeError
+
+### 函数内部arguments变量有哪些特性,有哪些属性,如何将它转换为数组
+
+- arguments[index]分别对应函数调用时的实参，并且通过arguments修改实参时会同时修改实参 
+- arguments.length为实参的个数（Function.length表示形参长度） 
+- arguments.callee为当前正在执行的函数本身，使用这个属性进行递归调用时需注意this的变化 
+- 转换为数组：var args = Array.prototype.slice.call(arguments, 0);
+
+### 评价一下三种方法实现继承的优缺点,并改进
+
+```
+function Shape() {}
+
+function Rect() {}
+
+// 方法1 原型继承
+Rect.prototype = new Shape();
+
+// 方法2 原型链继承
+Rect.prototype = Shape.prototype;
+
+// 方法3 混合方式继承
+Rect.prototype = Object.create(Shape.prototype);
+
+Rect.prototype.area = function () {
+  // do something
+};
+```
+
+**方法1：原型继承**
+
+- 优点：正确设置原型链实现继承
+- 优点：父类实例属性得到继承，原型链查找效率提高，也能为一些属性提供合理的默认值
+- 缺点：父类实例属性为引用类型时，不恰当地修改会导致所有子类被修改
+- 缺点：创建父类实例作为子类原型时，可能无法确定构造函数需要的合理参数，这样提供的参数继承给子类没有实际意义，当子类需要这些参数时应该在构造函数中进行初始化和设置
+- 总结：继承应该是继承方法而不是属性，为子类设置父类实例属性应该是通过在子类构造函数中调用父类构造函数进行初始化
+
+**方法2：原型链继承**
+
+- 优点：正确设置原型链实现继承
+- 缺点：父类构造函数原型与子类相同。修改子类原型添加方法会修改父类
+
+**方法3：**
+
+- 优点：正确设置原型链且避免方法1.2中的缺点
+- 缺点：ES5方法需要注意兼容性
+
+**改进：**
+
+- 所有三种方法应该在子类构造函数中调用父类构造函数实现实例属性初始化
+
+```
+function Rect() {
+    Shape.call(this);
+}
+```
+
+- 用新创建的对象替代子类默认原型，设置Rect.prototype.constructor = Rect;保证一致性
+- 第三种方法的polyfill：
+
+```
+function create(obj) {
+    if (Object.create) {
+        return Object.create(obj);
+    }
+
+    function f() {};
+    f.prototype = obj;
+    return new f();
+}
+```
+
+**方法4： Class,extends继承**
+
+```
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+
+class ColorPoint extends Point {
+  constructor(x, y, color) {
+    super(x, y);    this.color = color; // 正确
+  }
+}
+```
+
+### 什么是闭包，闭包的作用
+
+- 闭包是一个函数，能将创建的变量的值始终保持在内存中，以供本地环境使用。
+- 函数内部可以直接访问外部变量，但在函数外部无法访问函数内部变量。使用闭包的主要作用就是间接访问函数的内部数据。
+
+```
+function showNum() {
+  var num = 12;
+  function showNum2() {
+    console.log(num);
+  };
+  return showNum2;
+}
+var myNum = showNum();
+myNum();//12
+```
+
+- 将创建的变量的值始终保持在内存中，以供本地环境使用。
+
+```
+function showNum() {
+  var num = 12;
+  function showNum2() {
+    console.log(++num);
+  };
+  return showNum2;
+}
+var myNum = showNum();
+myNum();//13
+```
+
+### 箭头函数和普通函数有什么区别
+
+- 箭头函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象，用call，apply，bind也不能改变this指向
+- 箭头函数不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。
+- 箭头函数不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。
+- 箭头函数不可以使用yield命令，因此箭头函数不能用作 Generator 函数。
+- 箭头函数没有原型对象prototype
+
+### 排序
+
+- sort
+
+```javascript
+var arr = [1,4,-8,-3,6,12,9,8];
+arr.sort((a,b) => {
+      return a-b;
+})
+console.log(arr);
+```
+
+- 冒泡排序
+
+```javascript
+var arr = [1,4,-8,-3,6,12,9,8];
+
+function bubbleSort(arr){
+    for (var i = 0; i < arr.length; i++) {
+        for (var j = 0; j < arr.length-i-1; j++) {
+            if(arr[j] > arr[j+1]){
+                var c = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = c;
+            }
+        }
+    }
+    return arr;
+}    
+console.log(bubbleSort(arr));
+```
+
+- [查看更多](https://blog.csdn.net/lianwenxiu/article/details/88087176)
+
+### JavaScript内存机制之问——数据是如何存储的？
+
+- 基本数据类型用栈存储，引用数据类型用堆存储。（闭包变量是存在堆内存中的。）
+- 基本数据类型：boolean string number null undefined symbol bigint
+- 引用数据类型：object function array 
+
+### JS异步编程有哪些方案？为什么会出现这些方案？
+
+#### 回调函数
+
+- 很容易产生回调地狱。代码可读性和可维护性差，每次任务可能会失败，需要在回调里面对每个任务的失败情况进行处理，增加了代码的混乱程度。
+
+### Promise原理
+
+- 三种状态: 等待态(Pending)、执行态（Fulfilled）、拒绝态（Pejected）
+
+#### promise
+
+- 解决了回调地狱，增加了代码可读性
+
+```javascript
+const PENDING = 'pending'
+const FULFILLED = 'fulfilled'
+const REJECT = 'reject'
+
+function MyPromise(executor) {
+    let self = this
+    self.value = null
+    self.error = null
+    self.status = PENDING
+    self.onFulfilled = null; //成功的回调函数
+    self.onRejected = null; //失败的回调函数
+    const resolve = (value) => {
+        if(self.status !== PENDING) return
+        setTimeout(() => {
+            self.status = FULFILLED;
+            self.value = value;
+            self.onFulfilled(self.value);//resolve时执行成功回调
+        })
+    }
+    const reject = (error) => {
+       if(self.status !== PENDING) return
+        setTimeout(() => {
+            self.status = REJECT;
+            self.error = error;
+            self.onRejected(self.error);//reject时执行失败回调
+        })
+    }
+    executor(resolve, reject);
+}
+MyPromise.prototype.then = function(onFulfilled, onRejected) {
+  if (this.status === PENDING) {
+    this.onFulfilled = onFulfilled;
+    this.onRejected = onRejected;
+  } else if (this.status === FULFILLED) {
+    //如果状态是fulfilled，直接执行成功回调，并将成功值传入
+    onFulfilled(this.value)
+  } else {
+    //如果状态是rejected，直接执行失败回调，并将失败原因传入
+    onRejected(this.error)
+  }
+  return this;
+}
+```
+
+#### async + await
+
+- ES7新增，加上 async 的函数都默认返回一个 Promise 对象
+
+- ```javascript
+  const readFileAsync = async function () {
+    const f1 = await readFilePromise('1.json')
+    const f2 = await readFilePromise('2.json')
+    const f3 = await readFilePromise('3.json')
+    const f4 = await readFilePromise('4.json')
+  }
+  ```
+
+### require和import
+
+- require：运行时调用；使用module.exports导出
+
+- import：编译时调用，必须放在文件开头引入
+
+  - export和import
+  - export：用于对外输出本模块（一个文件可以理解为一个模块）变量的接口
+  - import：用于在一个模块中加载export输出变量的接口
+
+- require/exports 和 import/export 形式不一样
+
+  require/exports 的写法：
+
+  ```text
+  const fs = require('fs')
+  exports.fs = fs
+  module.exports = fs
+  ```
+
+  import/export 的写法：
+
+  ```text
+  import fs from 'fs'
+  import {default as fs} from 'fs'
+  import * as fs from 'fs'
+  import {readFile} from 'fs'
+  import {readFile as read} from 'fs'
+  import fs, {readFile} from 'fs'
+  
+  export default fs
+  export const fs
+  export function readFile
+  export {readFile, read}
+  export * from 'fs'
+  ```
+
