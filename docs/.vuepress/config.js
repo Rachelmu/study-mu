@@ -57,6 +57,7 @@ module.exports = {
               'VueComponents', /* /frame/vue/VueComponents.html */
               'VueTemplate', /* /frame/vue/VueTemplate.html */
               'VueTheory',  /* /frame/vue/VueTheory.html */
+              'VueKeepAlive',  /* /frame/vue/VueKeepAlive.html */
               'VueAnalysis', /* /frame/vue/VueAnalysis.html */
               'Vuex'   /* /frame/vue/Vuex.html */
             ],
