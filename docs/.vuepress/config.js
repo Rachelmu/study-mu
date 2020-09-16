@@ -32,7 +32,12 @@ module.exports = {
           { text: "数据结构与算法", link: "/arithmetic/"},
           { text: "前端工程化", link: "/engineering/"},
           { text: "面试问题", link: "/interview/" },
-          { text: "前端知识库", link: "/knowledge/" }
+          { text: "知识库", 
+            items: [
+              { text: '前端相关知识', link: "/knowledge/" },
+              { text: '读书笔记', link: "/readingNotes/" }
+            ]
+          }
         ],
         // sidebar: 'auto'
         sidebar:{
@@ -75,6 +80,10 @@ module.exports = {
               'node', /* /interview/node.html */
               'arithmetic', /* /interview/arithmetic.html */
               'performance', /* /interview/performance.html */
+            ],
+            '/readingNotes/': [
+              '',      /* JS */
+              'notes-1', /* /readingNotes/notes-1.html */
             ],
               // fallback
             '/': [
