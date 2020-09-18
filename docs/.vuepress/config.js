@@ -43,6 +43,7 @@ module.exports = {
         sidebar:{
               '/web/css/':[
               '',  /* css */
+              'less', /* /web/css/less.html */
               'flex', /* /web/css/flex.html */
             ],
             '/javaScript/js/': [
