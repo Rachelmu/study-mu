@@ -66,6 +66,8 @@ module.exports = {
               'VueTheory',  /* /frame/vue/VueTheory.html */
               'VueKeepAlive',  /* /frame/vue/VueKeepAlive.html */
               'VueAnalysis', /* /frame/vue/VueAnalysis.html */
+              'VueTransfer', /* /frame/vue/VueTransfer.html */
+              'VueMergeStrategies', /* /frame/vue/VueMergeStrategies.html */
               'Vuex'   /* /frame/vue/Vuex.html */
             ],
             '/interview/': [
