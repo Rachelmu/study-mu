@@ -31,6 +31,40 @@ var Child = {
 }
 
 ```
+### inject格式说明
+除了上面代码中所使用的inject:['name']写法之外，inject还可以是一个对象。且可以指定默认值 
+
+``` js
+{
+  inject: {
+    customForm: {
+      // 对于非原始值，和props一样，需要提供一个工厂方法
+      default: () => ({
+        size: 'default'
+      })
+    }
+  }
+}
+
+// 如果我们希望inject进来的属性的名字不叫customForm,而是叫parentForm，如下代码
+inject: {
+    // 注入的属性名称
+    parentForm: {
+      // 通过 from 指定从哪个属性注入
+      from: 'customForm',
+      default: () => ({
+        size: 'default'
+      })
+    }
+  },
+  computed: {
+    // 通过计算组件获取组件的size, 如果当前组件传入，则使用当前组件的，否则是否form组件的
+    getSize() {
+      return this.size || this.parentForm.size
+    }
+  }
+
+```
 
 ### 使用 provide/inject 做全局状态管理
 
@@ -113,6 +147,12 @@ export default {
 在实际开发中，一个项目常常有多人开发，每个人有可能需要不同的全局变量，如果所有人的全局变量都统一定义在根组件，势必会引起变量冲突等问题。  
 
 使用 provide/inject 不同模块的入口组件传给各自的后代组件可以完美的解决该问题。  
+
+### 使用限制
+- provide和inject的绑定不是可响应式的。但是，如果你传入的是一个可监听的对象，如上面的customForm: this,那么其对象的属性还是可响应的。  
+
+- Vue官网建议provide 和 inject 主要在开发高阶插件/组件库时使用。不推荐用于普通应用程序代码中。因为provide和inject在代码中是不可追溯的(ctrl + f可以搜)，建议可以使用Vuex代替。 但是，也不是说不能用，在局部功能有时候用了作用还是比较大的。
+
 
 ### 慎用 provide/inject
 既然 provide/inject 如此好用，那么，为什么 Vue 官方还要推荐我们使用 Vuex，而不是用原生的 API 呢？ 
