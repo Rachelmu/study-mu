@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Vue传值方式 | 阿木木的前端笔记</title>
+    <meta name="generator" content="VuePress 1.5.4">
+    <link rel="icon" href="/study-mu/logo.png">
+    <meta name="description" content="阿木木的前端指南">
+    <link rel="preload" href="/study-mu/assets/css/0.styles.cefe3876.css" as="style"><link rel="preload" href="/study-mu/assets/js/app.e8ce0402.js" as="script"><link rel="preload" href="/study-mu/assets/js/2.3e793b54.js" as="script"><link rel="preload" href="/study-mu/assets/js/23.dda016cc.js" as="script"><link rel="prefetch" href="/study-mu/assets/js/10.654992a0.js"><link rel="prefetch" href="/study-mu/assets/js/11.d4068852.js"><link rel="prefetch" href="/study-mu/assets/js/12.b417c42b.js"><link rel="prefetch" href="/study-mu/assets/js/13.d6741064.js"><link rel="prefetch" href="/study-mu/assets/js/14.99c7ce51.js"><link rel="prefetch" href="/study-mu/assets/js/15.fa3a71c7.js"><link rel="prefetch" href="/study-mu/assets/js/16.668c3d22.js"><link rel="prefetch" href="/study-mu/assets/js/17.ff1e343c.js"><link rel="prefetch" href="/study-mu/assets/js/18.ce6b7467.js"><link rel="prefetch" href="/study-mu/assets/js/19.f6737cc6.js"><link rel="prefetch" href="/study-mu/assets/js/20.61b14e2f.js"><link rel="prefetch" href="/study-mu/assets/js/21.885a7018.js"><link rel="prefetch" href="/study-mu/assets/js/22.7d223a1d.js"><link rel="prefetch" href="/study-mu/assets/js/24.2344829f.js"><link rel="prefetch" href="/study-mu/assets/js/25.50e10b30.js"><link rel="prefetch" href="/study-mu/assets/js/26.2262e1d4.js"><link rel="prefetch" href="/study-mu/assets/js/27.03d55779.js"><link rel="prefetch" href="/study-mu/assets/js/28.a488ed82.js"><link rel="prefetch" href="/study-mu/assets/js/29.402707c2.js"><link rel="prefetch" href="/study-mu/assets/js/3.d5750486.js"><link rel="prefetch" href="/study-mu/assets/js/30.f0b63704.js"><link rel="prefetch" href="/study-mu/assets/js/31.427555a0.js"><link rel="prefetch" href="/study-mu/assets/js/32.8c3ca022.js"><link rel="prefetch" href="/study-mu/assets/js/33.9c935557.js"><link rel="prefetch" href="/study-mu/assets/js/34.a6e177bd.js"><link rel="prefetch" href="/study-mu/assets/js/35.d256c2d1.js"><link rel="prefetch" href="/study-mu/assets/js/36.32318275.js"><link rel="prefetch" href="/study-mu/assets/js/37.85f18c6e.js"><link rel="prefetch" href="/study-mu/assets/js/38.3cda4eb6.js"><link rel="prefetch" href="/study-mu/assets/js/39.c54e7025.js"><link rel="prefetch" href="/study-mu/assets/js/4.5ed19beb.js"><link rel="prefetch" href="/study-mu/assets/js/40.13d91d05.js"><link rel="prefetch" href="/study-mu/assets/js/41.fdba4e24.js"><link rel="prefetch" href="/study-mu/assets/js/42.13f40481.js"><link rel="prefetch" href="/study-mu/assets/js/43.68b4b728.js"><link rel="prefetch" href="/study-mu/assets/js/44.bd7cd4d4.js"><link rel="prefetch" href="/study-mu/assets/js/45.d358c09a.js"><link rel="prefetch" href="/study-mu/assets/js/46.df689918.js"><link rel="prefetch" href="/study-mu/assets/js/47.6bf2369f.js"><link rel="prefetch" href="/study-mu/assets/js/48.479f2bd2.js"><link rel="prefetch" href="/study-mu/assets/js/49.9be15cde.js"><link rel="prefetch" href="/study-mu/assets/js/5.490b5f30.js"><link rel="prefetch" href="/study-mu/assets/js/50.5a99ea14.js"><link rel="prefetch" href="/study-mu/assets/js/51.637d36ba.js"><link rel="prefetch" href="/study-mu/assets/js/52.fb07877f.js"><link rel="prefetch" href="/study-mu/assets/js/53.3db46c13.js"><link rel="prefetch" href="/study-mu/assets/js/54.55255f35.js"><link rel="prefetch" href="/study-mu/assets/js/55.b02bd47d.js"><link rel="prefetch" href="/study-mu/assets/js/56.fb6677b6.js"><link rel="prefetch" href="/study-mu/assets/js/57.712372ed.js"><link rel="prefetch" href="/study-mu/assets/js/58.fdd35475.js"><link rel="prefetch" href="/study-mu/assets/js/6.65c0cf4b.js"><link rel="prefetch" href="/study-mu/assets/js/7.d25043f9.js"><link rel="prefetch" href="/study-mu/assets/js/8.aaa997ec.js"><link rel="prefetch" href="/study-mu/assets/js/9.7ee563fb.js">
+    <link rel="stylesheet" href="/study-mu/assets/css/0.styles.cefe3876.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/study-mu/" class="home-link router-link-active"><img src="/study-mu/logo.png" alt="阿木木的前端笔记" class="logo"> <span class="site-name can-hide">阿木木的前端笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/study-mu/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端基础" class="dropdown-title"><span class="title">前端基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端基础" class="mobile-dropdown-title"><span class="title">前端基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/study-mu/web/html/" class="nav-link">
+  html
+</a></li><li class="dropdown-item"><!----> <a href="/study-mu/web/css/" class="nav-link">
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/study-mu/javaScript/js/" class="nav-link">
+  javascript
+</a></li><li class="dropdown-item"><!----> <a href="/study-mu/javaScript/es6/" class="nav-link">
+  es6
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端框架" class="dropdown-title"><span class="title">前端框架</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端框架" class="mobile-dropdown-title"><span class="title">前端框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/study-mu/frame/vue/" class="nav-link router-link-active">
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/study-mu/frame/react/" class="nav-link">
+  react
+</a></li></ul></div></div><div class="nav-item"><a href="/study-mu/TypeScript/" class="nav-link">
+  TypeScript
+</a></div><div class="nav-item"><a href="/study-mu/node/" class="nav-link">
+  node
+</a></div><div class="nav-item"><a href="/study-mu/http/" class="nav-link">
+  http
+</a></div><div class="nav-item"><a href="/study-mu/arithmetic/" class="nav-link">
+  数据结构与算法
+</a></div><div class="nav-item"><a href="/study-mu/engineering/" class="nav-link">
+  前端工程化
+</a></div><div class="nav-item"><a href="/study-mu/interview/" class="nav-link">
+  面试问题
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="知识库" class="dropdown-title"><span class="title">知识库</span> <span class="arrow down"></span></button> <button type="button" aria-label="知识库" class="mobile-dropdown-title"><span class="title">知识库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/study-mu/knowledge/" class="nav-link">
+  前端相关知识
+</a></li><li class="dropdown-item"><!----> <a href="/study-mu/readingNotes/" class="nav-link">
+  读书笔记
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/study-mu/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端基础" class="dropdown-title"><span class="title">前端基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端基础" class="mobile-dropdown-title"><span class="title">前端基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/study-mu/web/html/" class="nav-link">
+  html
+</a></li><li class="dropdown-item"><!----> <a href="/study-mu/web/css/" class="nav-link">
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/study-mu/javaScript/js/" class="nav-link">
+  javascript
+</a></li><li class="dropdown-item"><!----> <a href="/study-mu/javaScript/es6/" class="nav-link">
+  es6
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端框架" class="dropdown-title"><span class="title">前端框架</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端框架" class="mobile-dropdown-title"><span class="title">前端框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/study-mu/frame/vue/" class="nav-link router-link-active">
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/study-mu/frame/react/" class="nav-link">
+  react
+</a></li></ul></div></div><div class="nav-item"><a href="/study-mu/TypeScript/" class="nav-link">
+  TypeScript
+</a></div><div class="nav-item"><a href="/study-mu/node/" class="nav-link">
+  node
+</a></div><div class="nav-item"><a href="/study-mu/http/" class="nav-link">
+  http
+</a></div><div class="nav-item"><a href="/study-mu/arithmetic/" class="nav-link">
+  数据结构与算法
+</a></div><div class="nav-item"><a href="/study-mu/engineering/" class="nav-link">
+  前端工程化
+</a></div><div class="nav-item"><a href="/study-mu/interview/" class="nav-link">
+  面试问题
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="知识库" class="dropdown-title"><span class="title">知识库</span> <span class="arrow down"></span></button> <button type="button" aria-label="知识库" class="mobile-dropdown-title"><span class="title">知识库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/study-mu/knowledge/" class="nav-link">
+  前端相关知识
+</a></li><li class="dropdown-item"><!----> <a href="/study-mu/readingNotes/" class="nav-link">
+  读书笔记
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/study-mu/frame/vue/" aria-current="page" class="sidebar-link">Vue 介绍</a></li><li><a href="/study-mu/frame/vue/VueDes.html" class="sidebar-link">Vue规范</a></li><li><a href="/study-mu/frame/vue/VueBase.html" class="sidebar-link">Vue基础</a></li><li><a href="/study-mu/frame/vue/VueComponents.html" class="sidebar-link">Vue组件</a></li><li><a href="/study-mu/frame/vue/VueTemplate.html" class="sidebar-link">Vue 模版编译原理</a></li><li><a href="/study-mu/frame/vue/VueTheory.html" class="sidebar-link">Vue 基础原理解析</a></li><li><a href="/study-mu/frame/vue/VueKeepAlive.html" class="sidebar-link">Vue内置组件keep-alive内部原理</a></li><li><a href="/study-mu/frame/vue/VueAnalysis.html" class="sidebar-link">Vue解析</a></li><li><a href="/study-mu/frame/vue/VueTransfer.html" aria-current="page" class="active sidebar-link">Vue传值方式</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/study-mu/frame/vue/VueTransfer.html#provide与inject" class="sidebar-link">provide与inject</a></li></ul></li><li><a href="/study-mu/frame/vue/VueMergeStrategies.html" class="sidebar-link">Vue合并策略</a></li><li><a href="/study-mu/frame/vue/Vuex.html" class="sidebar-link">Vuex</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="vue传值方式"><a href="#vue传值方式" class="header-anchor">#</a> Vue传值方式</h1> <h2 id="provide与inject"><a href="#provide与inject" class="header-anchor">#</a> provide与inject</h2> <h3 id="provide-inject基本介绍"><a href="#provide-inject基本介绍" class="header-anchor">#</a> provide/inject基本介绍</h3> <p>provide/inject 是 Vue 在 2.2.0 版本新增的 API，官网介绍如下：</p> <blockquote><p>这对选项需要一起使用，以允许一个祖先组件向其所有子孙后代注入一个依赖，不论组件层次有多深，并在起上下游关系成立的时间里始终生效。如果你熟悉 React，这与 React 的上下文特性很相似</p></blockquote> <p>官网的解释很让人疑惑，那我翻译下这几句话：</p> <p>provide 可以在祖先组件中指定我们想要提供给后代组件的数据或方法，而在任何后代组件中，我们都可以使用 inject 来接收 provide 提供的数据或方法。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 父级组件提供 'foo'</span>
+<span class="token keyword">var</span> Provider <span class="token operator">=</span> <span class="token punctuation">{</span>
+  provide<span class="token operator">:</span> <span class="token punctuation">{</span>
+    foo<span class="token operator">:</span> <span class="token string">'bar'</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 子组件注入 'foo'</span>
+<span class="token keyword">var</span> Child <span class="token operator">=</span> <span class="token punctuation">{</span>
+  inject<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'foo'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token function">created</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>foo<span class="token punctuation">)</span> <span class="token comment">// =&gt; &quot;bar&quot;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><h3 id="inject格式说明"><a href="#inject格式说明" class="header-anchor">#</a> inject格式说明</h3> <p>除了上面代码中所使用的inject:['name']写法之外，inject还可以是一个对象。且可以指定默认值</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token punctuation">{</span>
+  inject<span class="token operator">:</span> <span class="token punctuation">{</span>
+    customForm<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 对于非原始值，和props一样，需要提供一个工厂方法</span>
+      <span class="token function-variable function">default</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+        size<span class="token operator">:</span> <span class="token string">'default'</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 如果我们希望inject进来的属性的名字不叫customForm,而是叫parentForm，如下代码</span>
+inject<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 注入的属性名称</span>
+    parentForm<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 通过 from 指定从哪个属性注入</span>
+      <span class="token keyword">from</span><span class="token operator">:</span> <span class="token string">'customForm'</span><span class="token punctuation">,</span>
+      <span class="token function-variable function">default</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+        size<span class="token operator">:</span> <span class="token string">'default'</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  computed<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 通过计算组件获取组件的size, 如果当前组件传入，则使用当前组件的，否则是否form组件的</span>
+    <span class="token function">getSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>size <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>parentForm<span class="token punctuation">.</span>size
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+</code></pre></div><h3 id="使用-provide-inject-做全局状态管理"><a href="#使用-provide-inject-做全局状态管理" class="header-anchor">#</a> 使用 provide/inject 做全局状态管理</h3> <p>在日常开发中，我们经常会使用 Vuex 做状态管理，但是，我个人一直不喜欢使用 Vuex，原因在于 Vuex</p> <p>为了保持状态可被回溯追踪，使用起来太过繁琐；而我之前参与的项目，较少多人合作，这个功能对于我来说，意义不大，我仅仅只需要 Vuex 中提供全局状态的功能。
+那么，有没有方便快捷的实现全局状态的方法呢？当然有，这就是 provide/inject 这个黑科技 API 的一种使用方法。</p> <p>很多人也许会想到一种方式：在根组件中，传入变量，然后在后代组件中使用即可。</p> <div class="language-vue extra-class"><pre class="language-vue"><code>// 根组件提供一个非响应式变量给后代组件
+export default {
+  provide () {
+    return {
+      text: 'bar'
+    }
+  }
+}
+
+// 后代组件注入 'app'
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>{{this.text}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+  <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+    inject<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'text'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token function">created</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token string">'baz'</span> <span class="token comment">// 在模板中，依然显示 'bar'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+
+</code></pre></div><p>这个想法，说对也对，说不对也不对，原因在于 provide 的特殊性。</p> <p>在官网文档中关于 provide/inject 有这么一个提示：</p> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>提示：provide 和 inject 绑定并不是可响应的。这是刻意为之的。然而，如果你传入了一个可监听的对象，那么其对象的属性还是可响应的。</p></div> <p>也就是说，Vue 不会对 provide 中的变量进行响应式处理。所以，要想 inject 接受的变量是响应式的，provide 提供的变量本身就需要是响应式的。
+由于组件内部的各种状态就是可响应的，所以我们直接在根组件中将组件本身注入</p> <p>provide，此时，我们可以在后代组件中任意访问根组件中的所有状态，根组件就成为了全局状态的容器，仔细想想，是不是很像 React 中的 context 呢？</p> <div class="language-vue extra-class"><pre class="language-vue"><code>// 根组件提供将自身提供给后代组件
+export default {
+  provide () {
+    return {
+      app: this
+    }
+  },
+  data () {
+    return {
+      text: 'bar'
+    }
+  }
+}
+
+// 后代组件注入 'app'
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>{{this.app.text}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+  <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+    inject<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'app'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token function">created</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>app<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token string">'baz'</span> <span class="token comment">// 在模板中，显示 'baz'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>	
+
+</code></pre></div><p>也许有的同学会问：使用 $root 依然能够取到根节点，那么我们何必使用 provide/inject 呢？</p> <p>在实际开发中，一个项目常常有多人开发，每个人有可能需要不同的全局变量，如果所有人的全局变量都统一定义在根组件，势必会引起变量冲突等问题。</p> <p>使用 provide/inject 不同模块的入口组件传给各自的后代组件可以完美的解决该问题。</p> <h3 id="使用限制"><a href="#使用限制" class="header-anchor">#</a> 使用限制</h3> <ul><li><p>provide和inject的绑定不是可响应式的。但是，如果你传入的是一个可监听的对象，如上面的customForm: this,那么其对象的属性还是可响应的。</p></li> <li><p>Vue官网建议provide 和 inject 主要在开发高阶插件/组件库时使用。不推荐用于普通应用程序代码中。因为provide和inject在代码中是不可追溯的(ctrl + f可以搜)，建议可以使用Vuex代替。 但是，也不是说不能用，在局部功能有时候用了作用还是比较大的。</p></li></ul> <h3 id="慎用-provide-inject"><a href="#慎用-provide-inject" class="header-anchor">#</a> 慎用 provide/inject</h3> <p>既然 provide/inject 如此好用，那么，为什么 Vue 官方还要推荐我们使用 Vuex，而不是用原生的 API 呢？</p> <p>我在前面提到过，Vuex 和 provide/inject 最大的区别在于，Vuex 中的全局状态的每次修改是可以追踪回溯的，而 provide/inject 中变量的修改是无法控制的，换句话说，你不知道是哪个组件修改了这个全局状态。</p> <p>Vue 的设计理念借鉴了 React 中的单向数据流原则（虽然有 sync 这种破坏单向数据流的家伙），而 provide/inject 明显破坏了单向数据流原则。试想，如果有多个后代组件同时依赖于一个祖先组件提供的状态，那么只要有一个组件修改了该状态，那么所有组件都会受到影响。这一方面增加了耦合度，另一方面，使得数据变化不可控。如果在多人协作开发中，这将成为一个噩梦。</p> <p>在这里，我总结了两条条使用 provide/inject 做全局状态管理的原则：</p> <p>1.多人协作时，做好作用域隔离</p> <p>2.尽量使用一次性数据作为全局状态</p> <p>看起来，使用 provide/inject 做全局状态管理好像很危险，那么有没有 provide/inject 更好的使用方式呢？当然有，那就是使用 provide/inject 编写组件。</p> <h3 id="使用-provide-inject-编写组件"><a href="#使用-provide-inject-编写组件" class="header-anchor">#</a> 使用 provide/inject 编写组件</h3> <p>使用 provide/inject 做组件开发，是 Vue 官方文档中提倡的一种做法。</p> <p>以我比较熟悉的 elementUI 来举例：</p> <p>在 elementUI 中有 Button（按钮）组件，当在 Form（表单）组件中使用时，它的尺寸会同时受到外层的 FormItem 组件以及更外层的 Form 组件中的 size 属性的影响。</p> <p>如果是常规方案，我们可以通过 props 从 Form 开始，一层层往下传递属性值。看起来只需要传递传递两层即可，还可以接受。但是，Form 的下一层组件不一定是 FormItem，FormItem 的下一层组件不一定是 Button，它们之间还可以嵌套其他组件，也就是说，层级关系不确定。如果使用 props，我们写的组件会出现强耦合的情况。</p> <p>provide/inject 可以完美的解决这个问题，只需要向后代注入组件本身（上下文），后代组件中可以无视层级任意访问祖先组件中的状态。
+部分源码如下：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// Button 组件核心源码</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">'ElButton'</span><span class="token punctuation">,</span>
+    <span class="token comment">// 通过 inject 获取 elForm 以及 elFormItem 这两个组件</span>
+    inject<span class="token operator">:</span> <span class="token punctuation">{</span>
+        elForm<span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token keyword">default</span><span class="token operator">:</span> <span class="token string">''</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        elFormItem<span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token keyword">default</span><span class="token operator">:</span> <span class="token string">''</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token comment">// ...</span>
+    computed<span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token function">_elFormItemSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>elFormItem <span class="token operator">||</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span>elFormItemSize<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token function">buttonSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>size <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_elFormItemSize <span class="token operator">||</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>$<span class="token constant">ELEMENT</span> <span class="token operator">||</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span>size<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token comment">//...</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+</code></pre></div><h3 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h3> <p>其实在 Vue 的学习中，遵循着二八法则，我们常用的 20% 的 API 就能解决大部分日常问题，剩余的 API 感觉用处不大。但是，抽点时间去了解那些冷门的 API，也许你能发现一些不一般的风景，令你在解决一些问题时，事半功倍。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/study-mu/frame/vue/VueAnalysis.html" class="prev">
+        Vue解析
+      </a></span> <span class="next"><a href="/study-mu/frame/vue/VueMergeStrategies.html">
+        Vue合并策略
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/study-mu/assets/js/app.e8ce0402.js" defer></script><script src="/study-mu/assets/js/2.3e793b54.js" defer></script><script src="/study-mu/assets/js/23.dda016cc.js" defer></script>
+  </body>
+</html>
