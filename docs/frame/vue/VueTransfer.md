@@ -149,7 +149,7 @@ export default {
 使用 provide/inject 不同模块的入口组件传给各自的后代组件可以完美的解决该问题。  
 
 ### 使用限制
-- provide和inject的绑定不是可响应式的。但是，如果你传入的是一个可监听的对象，如上面的customForm: this,那么其对象的属性还是可响应的。  
+- provide和inject的绑定不是可响应式的。但是，如果你传入的是一个可监听的对象，如nameForm: this,那么其对象的属性还是可响应的。  
 
 - Vue官网建议provide 和 inject 主要在开发高阶插件/组件库时使用。不推荐用于普通应用程序代码中。因为provide和inject在代码中是不可追溯的(ctrl + f可以搜)，建议可以使用Vuex代替。 但是，也不是说不能用，在局部功能有时候用了作用还是比较大的。
 
@@ -210,5 +210,176 @@ export default {
 
 ```
 
+### inject格式说明
+使用的inject:['nameFrom']写法之外，inject还可以是一个对象。且可以指定默认值
+nameFrom使用默认值
+``` js
+{
+  inject: {
+    nameFrom: {
+      // 对于非原始值，和props一样，需要提供一个工厂方法
+      default: () => ({
+        size: 'default'
+      })
+    }
+  }
+}
+
+// 如果我们希望inject进来的属性的名字不叫nameFrom,而是叫parentForm，如下代码
+inject: {
+    // 注入的属性名称
+    parentForm: {
+      // 通过 from 指定从哪个属性注入
+      from: 'nameFrom',
+      default: () => ({
+        size: 'default'
+      })
+    }
+  },
+  computed: {
+    // 通过计算组件获取组件的size, 如果当前组件传入，则使用当前组件的，否则是否form组件的
+    getSize() {
+      return this.size || this.parentForm.size
+    }
+  }
+
+```
+
+
 ### 总结
 其实在 Vue 的学习中，遵循着二八法则，我们常用的 20% 的 API 就能解决大部分日常问题，剩余的 API 感觉用处不大。但是，抽点时间去了解那些冷门的 API，也许你能发现一些不一般的风景，令你在解决一些问题时，事半功倍。
+
+## dispatch 和 broadcast （vue2.0已经废用）
+这是一种有历史的组件通信方式
+
+> $dispatch与$broadcast是一种有历史的组件通信方式，为什么是有历史的，因为他们是Vue1.0提供的一种方式，在Vue2.0中废弃了。但是废弃了不代表我们不能自己手动实现，像许多UI库内部都有实现。本文以element-ui实现为基础进行介绍。同时看完本节，你会对组件的$parent,$children,$options有所了解。
+
+### 方法介绍
+- $dispatch: $dispatch会向上触发一个事件，同时传递要触发的祖先组件的名称与参数，当事件向上传递到对应的组件上时会触发组件上的事件侦听器，同时传播会停止。
+- $broadcast: $broadcast会向所有的后代组件传播一个事件，同时传递要触发的后代组件的名称与参数，当事件传递到对应的后代组件时，会触发组件上的事件侦听器，同时传播会停止（因为向下传递是树形的，所以只会停止其中一个叶子分支的传递）。
+
+### $dispatch实现与应用
+1. 实现
+``` js
+/**
+ * 向上传播事件
+ * @param {*} eventName 事件名称
+ * @param {*} componentName 接收事件的组件名称
+ * @param {...any} params 传递的参数,可以有多个
+ */
+function dispatch(eventName, componentName, ...params) {
+  // 如果没有$parent, 则取$root
+  let parent = this.$parent || this.$root
+  while (parent) {
+    // 组件的name存储在组件的$options.componentName 上面
+    const name = parent.$options.name
+    // 如果接收事件的组件是当前组件
+    if (name === componentName) {
+      // 通过当前组件上面的$emit触发事件,同事传递事件名称与参数
+      parent.$emit.apply(parent, [eventName, ...params])
+      break
+    } else {
+      // 否则继续向上判断
+      parent = parent.$parent
+    }
+  }
+}
+
+// 导出一个对象，然后在需要用到的地方通过混入添加
+export default {
+  methods: {
+    $dispatch: dispatch
+  }
+}
+
+
+```
+
+2.应用 
+在子组件中通过$dispatch向上触发事件
+``` js
+import emitter from '../mixins/emitter'
+export default {
+  name: 'Chart',
+  // 通过混入将$dispatch加入进来
+  mixins: [emitter],
+   mounted() {
+     // 在组件渲染完之后，将组件通过$dispatch将自己注册到Board组件上
+    this.$dispatch('register', 'Board', this)
+  }
+}
+
+```
+在Board组件上通过$on监听要注册的事件
+``` js
+export default {
+  name: 'Board',
+  created() {
+    this.$on('register',(component) => {
+      // 处理注册逻辑
+    })
+  }
+}
+
+```
+
+### $broadcast实现与应用
+1. 实现
+``` js
+
+/**
+ * 向下传播事件
+ * @param {*} eventName 事件名称
+ * @param {*} componentName 要触发组件的名称
+ * @param  {...any} params 传递的参数
+ */
+function broadcast(eventName, componentName, ...params) {
+  this.$children.forEach(child => {
+    const name = child.$options.name
+    if (name === componentName) {
+      child.$emit.apply(child, [eventName, ...params])
+    } else {
+      broadcast.apply(child, [eventName, componentName, ...params])
+    }
+  })
+}
+
+// 导出一个对象，然后在需要用到的地方通过混入添加
+export default {
+  methods: {
+    $broadcast: broadcast
+  }
+}
+
+```
+
+2.应用 
+在父组件中通过$broadcast向下触发事件
+``` js
+import emitter from '../mixins/emitter'
+export default {
+  name: 'Board',
+  // 通过混入将$dispatch加入进来
+  mixins: [emitter],
+  methods:{
+  	//在需要的时候，刷新组件
+  	$_refreshChildren(params) {
+  		this.$broadcast('refresh', 'Chart', params)
+  	}
+  }
+}
+```
+
+在后代组件中通过$on监听刷新事件
+``` js
+export default {
+  name: 'Chart',
+  created() {
+    this.$on('refresh',(params) => {
+      // 刷新事件
+    })
+  }
+}
+```
+### 总结
+通过上面的例子，同学们应该都能对$dispatch和$broadcast有所了解，但是为什么Vue2.0要放弃这两个方法呢？官方给出的解释是：”因为基于组件树结构的事件流方式实在是让人难以理解，并且在组件结构扩展的过程中会变得越来越脆弱。这种事件方式确实不太好，我们也不希望在以后让开发者们太痛苦。并且 $dispatch 和 $broadcast 也没有解决兄弟组件间的通信问题
