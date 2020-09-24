@@ -50,7 +50,7 @@ module.exports = {
               '',      /* JS */
               'function', /* /javaScript/js/function.html */
               'jsSixAcrobatics', /* /javaScript/js/jsSixAcrobatics.html */
-
+              'js22', /* /javaScript/js/js22.html */
             ],
             '/javaScript/es6/': [
               '',      /* es6 */
@@ -67,7 +67,9 @@ module.exports = {
               'VueKeepAlive',  /* /frame/vue/VueKeepAlive.html */
               'VueAnalysis', /* /frame/vue/VueAnalysis.html */
               'VueTransfer', /* /frame/vue/VueTransfer.html */
+              'VueDefinePrototype',  /* /frame/vue/VueDefinePrototype.html */
               'VueMergeStrategies', /* /frame/vue/VueMergeStrategies.html */
+              'VueTip', /* /frame/vue/VueTip.html */
               'Vuex'   /* /frame/vue/Vuex.html */
             ],
             '/interview/': [
@@ -76,6 +78,7 @@ module.exports = {
               'css', /* /interview/css.html */
               'js', /* /interview/js.html */
               'jsHigh', /* /interview/jsHigh.html */
+              'jsHard', /* /interview/jsHard.html */
               'es6', /* /interview/es6.html */
               'TypeScript', /* /interview/TypeScript.html */
               'vue', /* /interview/vue.html */
