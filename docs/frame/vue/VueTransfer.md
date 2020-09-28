@@ -48,7 +48,6 @@ computed: {
 
 为了定制 prop 的验证方式，你可以为 props 中的值提供一个带有验证需求的对象，而不是一个字符串数组。例如：
 
-``` js
 Vue.component('my-component', {
   props: {
     // 基础的类型检查 (`null` 和 `undefined` 会通过任何类型验证)
