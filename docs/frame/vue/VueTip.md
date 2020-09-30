@@ -95,5 +95,42 @@ export default {
 <custom-input v-model="text"></custom-input>
 ```
 
+### 自定义属性与事件
+通常情况下，使用value属性与input事件没有问题，但是有时候有些组件会将value属性或input事件用于不同的目的，比如对于单选框、复选框等类型的表单组件的value属性就有其他用处，[参考](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Value)。或者希望属性名称或事件名称与实际行为更贴切，比如active,checked等属性名。
+``` vue
+<template>
+  <!-- 开关组件，通过样式控制开关组件的状态 -->
+  <div
+    :class="['custom-switch', active && 'custom-swithc__acitive']"
+    @click="$_handleClick"
+  >
+    <!-- 开关组件内部的开关 -->
+    <span class="custom-switch__core"></span>
+  </div>
+</template>
+<script>
+export default {
+  // 通过model 可以自定义 属性和 事件名
+  model: {
+    event: "change",
+    prop: "active"
+  },
+  props: {
+    // 定义一个名为active的属性
+    active: {
+      type: Boolean,
+      default: false,
+    }
+  },
+  methods:{
+    $_handleClick(e){
+      // 对外暴露一个input事件
+      this.$emit("change", !this.active)
+    }
+  }
+}
+</script>
+```
+
 
 
