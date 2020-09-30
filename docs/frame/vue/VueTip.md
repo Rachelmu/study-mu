@@ -63,4 +63,37 @@ new Vue({
 
 
 ## 自定义v-model
+在用Vue开发前端时，不论使用原生还是封装好的UI库，对于表单组件，一般都会使用到v-model。虽然v-model是一个语法糖，但是吃到嘴里挺甜的啊。学会自定义v-model，还是很有必要的。
+
+### 基本用法
+一个组件上的v-model默认是通过在组件上面定义一个名为value的props,同时对外暴露一个名为input的事件。
+``` vue
+<template>
+  <div class="custom-input">
+    <input :value="value" @change="$_handleChange">
+  </div>
+</template>
+<script>
+export default {
+  props: {
+    // 定义一个名为value的属性
+    value: {
+      type: String,
+      default: "",
+    }
+  },
+  methods:{
+    $_handleChange(e){
+      // 对外暴露一个input事件
+      this.$emit("input", e.target.value)
+    }
+  }
+}
+</script>
+
+// 使用方法
+<custom-input v-model="text"></custom-input>
+```
+
+
 
