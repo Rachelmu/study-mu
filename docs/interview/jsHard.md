@@ -25,73 +25,148 @@ parseInt('3', 2);
 ```
 首先后两者参数不合法.
 
-所以答案是 [1, NaN, NaN]
+::: tip 所以答案是
+[1, NaN, NaN]
+:::
+
+
+## 第2题
+``` js
+[typeof null, null instanceof Object]
+```
+typeof 返回一个表示类型的字符串.
+
+instanceof 运算符用来检测 constructor.prototype 是否存在于参数 object 的原型链上.
+
+这个题可以直接看链接... 因为 typeof null === 'object' 自语言之初就是这样....
+
+typeof 的结果请看下表:
+``` js
+type         result
+Undefined   "undefined"
+Null        "object"
+Boolean     "boolean"
+Number      "number"
+String      "string"
+Symbol      "symbol"
+Host object Implementation-dependent
+Function    "function"
+Object      "object"
+```
+::: tip 所以答案是
+所以答案 [object, false]
+
+:::
 
 
 ## 第1题
 ``` js
 ```
+::: tip 所以答案是
+
+:::
 
 ## 第1题
 ``` js
 ```
+::: tip 所以答案是
+
+:::
 
 ## 第1题
 ``` js
 ```
+::: tip 所以答案是
+
+:::
 
 ## 第1题
 ``` js
 ```
+::: tip 所以答案是
+
+:::
 
 ## 第1题
 ``` js
 ```
+::: tip 所以答案是
+
+:::
 
 ## 第1题
 ``` js
 ```
+::: tip 所以答案是
+
+:::
 
 ## 第1题
 ``` js
 ```
+::: tip 所以答案是
+
+:::
 
 ## 第1题
 ``` js
 ```
+::: tip 所以答案是
+
+:::
 
 ## 第1题
 ``` js
 ```
+::: tip 所以答案是
+
+:::
 
 ## 第1题
 ``` js
 ```
+::: tip 所以答案是
+
+:::
 
 ## 第1题
 ``` js
 ```
+::: tip 所以答案是
+
+:::
 
 ## 第1题
 ``` js
 ```
+::: tip 所以答案是
+
+:::
 
 ## 第1题
 ``` js
 ```
+::: tip 所以答案是
+
+:::
 
 ## 第1题
 ``` js
 ```
+::: tip 所以答案是
+
+:::
 
 ## 第1题
 ``` js
 ```
+::: tip 所以答案是
+
+:::
 
 ## 第1题
 ``` js
 ```
+::: tip 所以答案是
 
-## 第1题
-``` js
-```
+:::
