@@ -59,25 +59,67 @@ Object      "object"
 :::
 
 
-## 第1题
+## 第3题
 ``` js
+[ [3,2,1].reduce(Math.pow), [].reduce(Math.pow) ]
 ```
-::: tip 所以答案是
+arr.reduce(callback[, initialValue])
 
+reduce接受两个参数, 一个回调, 一个初始值.
+
+回调函数接受四个参数 previousValue, currentValue, currentIndex, array
+
+需要注意的是 If the array is empty and no initialValue was provided, TypeError would be thrown.
+
+所以第二个表达式会报异常. 第一个表达式等价于 Math.pow(3, 2) => 9; Math.pow(9, 1) =>9
+
+::: tip 所以答案是
+答案 an error
 :::
 
-## 第1题
+## 第4题
 ``` js
+var val = 'smtg';
+console.log('Value is ' + (val === 'smtg') ? 'Something' : 'Nothing');
 ```
-::: tip 所以答案是
+简而言之 + 的优先级 大于 ?
 
+所以原题等价于 'Value is true' ? 'Somthing' : 'Nonthing' 而不是 'Value is' + (true ? 'Something' : 'Nonthing')
+
+::: tip 所以答案是
+答案 'Something'
 :::
 
-## 第1题
+## 第5题
 ``` js
+var name = 'World!';
+(function () {
+    if (typeof name === 'undefined') {
+        var name = 'Jack';
+        console.log('Goodbye ' + name);
+    } else {
+        console.log('Hello ' + name);
+    }
+})();
 ```
-::: tip 所以答案是
+在 JavaScript中， functions 和 variables 会被提升。变量提升是JavaScript将声明移至作用域 scope (全局域或者当前函数作用域) 顶部的行为。
 
+这个题目相当于
+``` js
+var name = 'World!';
+(function () {
+    var name;
+    if (typeof name === 'undefined') {
+        name = 'Jack';
+        console.log('Goodbye ' + name);
+    } else {
+        console.log('Hello ' + name);
+    }
+})();
+```
+
+::: tip 所以答案是
+所以答案是 'Goodbye Jack'
 :::
 
 ## 第1题
