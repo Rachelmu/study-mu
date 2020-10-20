@@ -50,6 +50,7 @@ module.exports = {
               '',      /* JS */
               'function', /* /javaScript/js/function.html */
               'jsSixAcrobatics', /* /javaScript/js/jsSixAcrobatics.html */
+              'jsDebounce', /* /javaScript/js/jsDebounce.html */
               'js22', /* /javaScript/js/js22.html */
             ],
             '/javaScript/es6/': [

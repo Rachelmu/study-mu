@@ -68,8 +68,14 @@ arr.reduce(callback[, initialValue])
 reduce接受两个参数, 一个回调, 一个初始值.
 
 回调函数接受四个参数 previousValue, currentValue, currentIndex, array
+Accumulator (acc) (累计器)
+Current Value (cur) (当前值)
+Current Index (idx) (当前索引)
+Source Array (src) (源数组)
 
 需要注意的是 If the array is empty and no initialValue was provided, TypeError would be thrown.
+
+Math.pow() 函数返回基数（base）的指数（exponent）次幂，即 baseexponent。
 
 所以第二个表达式会报异常. 第一个表达式等价于 Math.pow(3, 2) => 9; Math.pow(9, 1) =>9
 
