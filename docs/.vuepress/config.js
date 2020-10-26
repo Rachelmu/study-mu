@@ -92,7 +92,12 @@ module.exports = {
               '',      /* JS */
               'notes-1', /* /readingNotes/notes-1.html */
             ],
-              // fallback
+            '/knowledge/': [
+              '',      /* JS */
+              'reg',   /* /knowledge/reg.html */
+              'git', /* /knowledge/git.html */
+            ],
+            // fallback
             '/': [
               '',        /*  */
               'contact', /* contact.html */
