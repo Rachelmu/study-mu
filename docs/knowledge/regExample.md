@@ -72,6 +72,46 @@ trim 方法是去掉字符串的开头和结尾的空白符。有两种思路去
 
 第一种，匹配到开头和结尾的空白符，然后替换成空字符。如:
 
+```js
+function trim(str) {
+return str.replace(/^\s+|\s+$/g, '');
+}
+console.log( trim(" foobar ") ); // => "foobar"
+```
+
+
+第二种，匹配整个字符串，然后用引用来提取出相应的数据:   
+``` js
+function trim (str) {
+return str.replace(/^\s*(.*?)\s*$/g, "$1");
+}
+console.log( trim(" foobar ") ); // => "foobar"
+```
+
+这里使用了惰性匹配` *?`，不然也会匹配最后一个空格之前的所有空格的。 当然，前者效率高。
+
+### 将每个单词的首字母转换为大写
+``` js
+function titleize (str) {
+	return str.toLowerCase().replace(/(?:^|\s)\w/g, function (c) {
+		return c.toUpperCase(); 
+	});
+}
+console.log( titleize('my name is epeli') ); // => "My Name Is Epeli"
+```
+思路是找到每个单词的首字母，当然这里不使用非捕获匹配也是可以的。
+
+
+
+
+
+
+
+
+
+
+
+
 ## 题目
 
 ### 1、var s1 = "get-element-by-id"; 给定这样一个连字符串，写一个function转换为驼峰命名法形式的字符串 getElementById
