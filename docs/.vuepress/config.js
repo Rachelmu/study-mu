@@ -88,14 +88,14 @@ module.exports = {
               'arithmetic', /* /interview/arithmetic.html */
               'performance', /* /interview/performance.html */
             ],
+            '/knowledge/': [
+              '',      /* JS */
+              'reg', /* /knowledge/reg.html */
+              'regExample', /* /knowledge/regExample.html */
+            ],
             '/readingNotes/': [
               '',      /* JS */
               'notes-1', /* /readingNotes/notes-1.html */
-            ],
-            '/knowledge/': [
-              '',      /* JS */
-              'reg',   /* /knowledge/reg.html */
-              'git', /* /knowledge/git.html */
             ],
             // fallback
             '/': [

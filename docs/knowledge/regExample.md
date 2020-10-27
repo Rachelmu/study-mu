@@ -68,7 +68,9 @@ var string = '<div id="container" class="main"></div>'; console.log(string.match
 ```
 
 ### 字符串 trim 方法模拟
+trim 方法是去掉字符串的开头和结尾的空白符。有两种思路去做。  
 
+第一种，匹配到开头和结尾的空白符，然后替换成空字符。如:
 
 ## 题目
 
