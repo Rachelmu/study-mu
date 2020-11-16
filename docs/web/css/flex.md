@@ -71,11 +71,65 @@ flex-direction: row | row-reverse | column | column-reverse
 - align-content  多行沿交叉轴对齐方式
 	+ 当子容器多行排列时，设置行与行之间的对齐方式。
 
+#### flex-wrap
+- 设置换行方式
+``` css
+flex-wrap: wrap | nowrap | wrap-reverse
+```
+- wrap: 允许换行
+- nowrap: 不允许换行
+- wrap-reverse: 允许逆向换行
 
+#### flex-flow
+- flex-direction 和 flex-wrap 的简写    
+- 单独设置flex-direction取值，比如
+``` css
+flex-flow: row | column
+```
+- 单独设置flex-wrap取值
+``` css
+flex-flow: wrap | nowrap | wrap-reverse
+```
+- 同时设置两者取值
+``` css
+flex-flow: row wrap
+flex-flow: column nowrap
+```
 
+#### align-content
+这个属性是定义子容器在交叉轴的排列方式，也就是对齐方式。    
++ flex-start: 起始端对齐
++ flex-end: 末尾段对齐
++ center: 居中对齐
++ space-between: 等间距均匀分布
++ space-around: 等边距均匀分布
++ stretch: 拉伸对齐
++ baseline: 基线对齐
 
+#### 子容器
++ flex-grow 设置扩展比例
+	- 子容器弹性伸展的比例，简单理解，就是把剩余的空间按比例分配给子容器。
 
++ flex-shrink 设置收缩比例
+	- 子容器弹性收缩的比例。简单理解，就是当你子容器超出的部分，会按照对应的比例给子容器减去对应的值。
 
++ flex-basis 设置基准大小
+	- 在不伸缩的情况下，flex-basis给子容器设置大小才有作用。
+	- 当主轴为横向时，即
+		``` css
+		flex-direction：row | row-reverse
+		```
+		- flex-basis设置的大小为宽度，并且会覆盖witdh值
+	- 当主轴为纵向时，即	
+		``` css
+		flex-direction：column | column-reverse
+		```
+		- flex-basis设置的大小为高度，并且会覆盖height值
+
++ order 设置排列顺序
+	- 每个子容器的order属性默认为0
+	- 通过设置order属性值，改变子容器的排列顺序。
+	- 可以是负值，数值越小的话，排的越靠前。
 
 
 
