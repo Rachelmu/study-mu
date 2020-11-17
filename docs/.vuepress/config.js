@@ -93,6 +93,7 @@ module.exports = {
               '',      /* JS */
               'reg', /* /knowledge/reg.html */
               'regExample', /* /knowledge/regExample.html */
+              'eventLoop', /* /knowledge/eventLoop.html */
             ],
             '/readingNotes/': [
               '',      /* JS */
