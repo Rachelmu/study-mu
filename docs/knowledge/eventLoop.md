@@ -193,6 +193,59 @@ setTimeout
 那么为何存在第一种情况也就更好理解了，那就是 setTimeout 的实际的延迟事件小于node事件循环的开启事件，所以能在第一轮循环中被执行   
 
 
+了解了为何出现上述原因以后，这里提出两个问题：
+
++ 如何能做到一定先打印 setTimeout ，后打印 setImmediate
++ 如何能做到一定先打印 setImmediate ，后打印 setTimeout
+
+这里我们来分别实现一下这两个需求
+
+##### 实现一
+既然要让 setTimeout 先打印，那么就让它在第一轮循环时就被执行，那么我们只需要让事件循环开启的事件晚一点就好了。所以可以写一段同步的代码，让同步的代码执行事件长一点，然后就可以保证在进入 timers 阶段时，setTimeout 的回调已被送入 timers queue
+``` js
+setTimeout(() => {
+    console.log('setTimeout');
+}, 0)
+
+setImmediate(() => {
+    console.log('setImmediate');
+})
+
+let start = Date.now()
+// 让同步的代码运行30毫秒
+while(Date.now() - start < 30)
+```
+多次运行代码发现，每次都是先打印了 setTimeout，然后才打印的 setImmediate
+
+##### 实现二
+既然要让 setTimeout 后打印，那么就要想办法让它在第二轮循环时被执行，那么我们可以让 setTimeout 在第一轮事件循环跳过 timers 阶段后执行     
+
+刚开始我们讲过，poll 阶段是为了处理各种 I/O 事件的，例如文件的读取就属于 I/O 事件，所以我们可以把 setTimeout 和 setImmediate 的代码放在一个文件读取操作的回调内，这样在第一轮循环到达 poll 阶段时，会将 setTimeout 送入 timers queue，但此时早已跳过了 timers 阶段，所以其只会在下一轮循环时被打印 ；同时 setImmediate 此时被送入了 check queue ，那么在离开 poll 阶段以后就可以顺利得先打印 setImmediate 了
+
+``` js
+const fs = require('fs');
+
+fs.readFile(__filename, () => {
+  setTimeout(() => {
+    console.log('setTimeout');
+  }, 0);
+  setImmediate(() => {
+    console.log('setImmediate');
+  });
+});
+```
+
+多次运行代码发现，每次都是先打印了 setImmediate，然后才打印的 setTimeout
+
+
+
+
+
+
+
+
+
+
 
 
 
