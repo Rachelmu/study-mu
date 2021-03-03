@@ -1,4 +1,4 @@
-## indexOf
+## 用最简洁代码实现 indexOf 方法
 
 :::tip
 String.prototype.indexOf()
