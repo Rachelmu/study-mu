@@ -1,1 +1,19 @@
 # git 相关
+
+### git 如何添加与删除一个 submodule
+
+- 添加
+``` js
+$ git submodule add :git-url dep
+```
+
+- 删除
+``` js
+// 删除一个 submodule 比较麻烦，按照以下步骤可以完美删除
+
+vim .gitmodules，找到该模块位置，删掉
+vim .git/config，找到该模块位置，删除
+rm -rf .git/module/dep
+git rm --cached dep
+
+```
