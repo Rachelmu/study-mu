@@ -243,4 +243,115 @@ console.log(ret);
 let val = (12, 32);
 console.log(val);
 ```
+我们用在哪里？有什么猜测吗？逗号(,)运算符最常见的用法是在for循环中提供多个参数。
+```js
+for(var i=0,j =50; i<= 50; i++, j--)
+```
+
+## 合并多个对象
+您可能需要将两个对象合并在一起，并创建一个更好的信息对象来工作。你可以使用展开运算符......（是的，三个点！）。 考虑两个对象，分别是emp和job。
+```js
+let emp = {
+  'id': '001',
+  'name': 'mumu',
+  'age': 30
+}
+
+let job = {
+  'title': 'web Dev',
+  'location': 'Beijing'
+}
+
+// spread operator
+let merged = {...emp, ...job};
+console.log('Spread merged', merged);
+
+// 有另一种方法来执行这种合并。使用Object.assign()。你可以这样做。
+console.log('Object assign', Object.assign({}, emp, job));
+```
+注意，spread操作符和Object.assign都是执行浅层合并。在浅层合并中，第一个对象的属性会被覆盖到与第二个对象相同的属性值。 对于深合并，请使用类似于：_merge of lodash。
+
+## 解构
+
+将数组元素和对象属性分解为变量的技术称为，反结构。让我们通过几个例子来看看。
+
+### 数组
+在这里，我们有一系列的表情符号，
+
+```js
+let emojis = ['🔥', '⏲️', '🏆', '🍉'];
+
+// 要解构，我们将使用如下语法。
+let [fire, clock, , watermelon] = emojis;
+
+// 这和做，让火=表情符号[0]是一样的；但多了很多灵活性。 你有没有注意到，我只是用中间的空位忽略了奖杯表情？那么这样做的输出会是什么呢？
+
+
+```
+让我在这里也介绍一下叫做 rest 操作符的东西。如果你想对一个数组进行重构，将一个或多个项目赋值给变量，然后将其余的项目存入另一个数组，你可以使用......休息运算符来实现，如下图所示。
+```js
+let [fruit, ...rest] = emojis;
+console.log(rest);
+```
+### 对象
+和数组一样，我们也可以对对象进行重构。
+
+``` js
+let shape = {
+  name: 'rect',
+  sides: 4,
+  height: 300,
+  width: 500
+};
+
+// 破坏结构，我们得到一个名字，边在几个变量中，其余的在另一个对象中。
+let {name, sides, ...restObj} = shape;
+console.log(name, sides);
+console.log(restObj);
+
+```
+
+## 获取查询参数
+window.location对象有一堆实用的方法和属性，我们可以通过这些属性和方法来获取浏览器URL的协议、主机、端口、域名等信息。我们可以通过这些属性和方法从浏览器的URL中获取协议、主机、端口、域名等信息。
+
+我发现非常有用的属性之一是，
+``` js
+window.location.search
+
+// 搜索属性从位置URL中返回查询字符串。下面是一个示例URL：https:/tapasadhiary.com?project=js。location.search将返回，?project=js。
+
+// ie下不支持URLSearchParams 接口定义了一些实用的方法来处理 URL 的查询字符串。
+let project = new URLSearchParams(location.search).get('project');
+
+// js
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
