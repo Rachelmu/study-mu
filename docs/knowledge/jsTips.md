@@ -269,7 +269,11 @@ console.log('Spread merged', merged);
 // 有另一种方法来执行这种合并。使用Object.assign()。你可以这样做。
 console.log('Object assign', Object.assign({}, emp, job));
 ```
-注意，spread操作符和Object.assign都是执行浅层合并。在浅层合并中，第一个对象的属性会被覆盖到与第二个对象相同的属性值。 对于深合并，请使用类似于：_merge of lodash。
+
+注意，spread操作符和Object.assign都是执行浅层合并。在浅层合并中，第一个对象的属性会被覆盖到与第二个对象相同的属性值。 对于深合并，请使用类似于：_merge of lodash.
+
+
+
 
 ## 解构
 
