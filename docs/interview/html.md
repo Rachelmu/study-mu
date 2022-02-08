@@ -8,11 +8,15 @@ https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML5
 
 + 什么是标签语义化
   + 合理的标签干合适的事情
++ 优点
+  + 让人更容易读懂（增加代码可读性）
+  + 让搜索引擎更容易读懂（SEO）
 
 + 都有哪些标签，都是啥意思
-  + 块级（display：block）：div 、p、h1~h6、hr、ul、ol、li、dl、dd、form、table、header、footer、main、nav、sector、arcitcle、pre、table、tbody、thead、th、tr、tfoot
-  +  行级（display：inline）：a、span、small、strong、em、i、code、
+  + 块级（display：block/table）：div 、p、h1~h6、hr、ul、ol、li、dl、dd、form、table、header、footer、main、nav、sector、arcitcle、pre、table、tbody、thead、th、tr、tfoot
+  + 行级（display：inline/inline-block）：a、span、small、strong、em、i、code、img、input、button
   + 行内块（display：inline-block）：img、input
+
 
 + **区别**：
   + 1.行内元素与块级函数可以相互转换，通过修改display属性值来切换块级元素和行内元素，行内元素display：inline，块级元素display：block。

@@ -348,3 +348,31 @@
 
 + 补间动画就是指控制最开始的状态和最末的状态的动画，中间的状态由浏览器自动帮我们计算生成
 + transition动画最主要的属性是transition属性，它其实是4个属性的缩写。
+
+
+# CSS布局
+## 盒子模型
+### IE盒模型和W3C标准盒模型的区别是什么？
++ W3C 标准盒模型：
+  + 属性width,height只包含内容content，不包含border和padding。
++ IE 盒模型：
+  + 属性width,height包含border和padding，指的是content+padding+border。
+  + 在ie8+浏览器中使用哪个盒模型可以由box-sizing(CSS新增的属性)控制，默认值为content-box，即标准盒模型；如果将box-sizing设为border-box则用的是IE盒模型。如果在ie6,7,8中DOCTYPE缺失会触发IE模式。在当前W3C标准中盒模型是可以通过box-sizing自由的进行切换的。
+
+### 盒子模型的计算
++ offsetWidth（内容宽度 + 内边距 + 边框）， 无外边距
++ box-sizing: content-box|border-box|inherit:
+  + content-box 使得元素的宽高即为内容区的宽高
+  + border-box 与上面相反，如果你需要在一个宽200px的div上围绕2px的边框，那么你的边框是在这个div容器内壁围绕，即content+padding+border=200px
+  + inherit 指定box-sizing属性的值，应该从父元素继承
+## margin负值问题
+### 对margin的top left right bottom 设置负值，有何效果？
+
+## BFC
+
+## float布局
+### 如何实现圣杯布局和双飞翼布局
+### 手写clearfix
+
+## flex布局
+### flex实现一个三点色子
