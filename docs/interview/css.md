@@ -457,3 +457,7 @@
   - block 元素： margin:auto
   - absolute 元素： left: 50% + margin-left 负值
 - 垂直居中
+  - inline元素： line-height的值等于height的值
+  - absolute元素： top:50% + margin-top 负值
+  - absolute元素： transform(-50%, -50%)
+  - absoulte元素： top,left, bottom, right = 0 + margin:auto
