@@ -365,14 +365,95 @@
   + content-box 使得元素的宽高即为内容区的宽高
   + border-box 与上面相反，如果你需要在一个宽200px的div上围绕2px的边框，那么你的边框是在这个div容器内壁围绕，即content+padding+border=200px
   + inherit 指定box-sizing属性的值，应该从父元素继承
+
+## margin纵向重叠问题
++ 相邻元素的margin-top 和margin-bottom会发生重叠
++ 空白内容的标签也会重叠
 ## margin负值问题
 ### 对margin的top left right bottom 设置负值，有何效果？
++ margin-top和margin-left负值，元素向上、向左移动
++ margin-right负值，右侧元素左移，自身不受影响
++ margin-bottom负值，下方元素上移，自身不受影响
+
 
 ## BFC
++ Block format context 块级格式化上下文
++ 块级格式化上下文，是一个独立的渲染区域，让处于 BFC 内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响。 是Web页面的可视CSS渲染的一部分，是块盒子的布局过程发生的区域，也是浮动元素与其他元素交互的区域。
+### 触发条件:
++ 根元素
++ position: absolute/fixed
++ display: inline-block / table/ flex
++ float 元素 不是none
++ ovevflow !== visible
+### 规则:
++ 属于同一个 BFC 的两个相邻 Box 垂直排列
++ 属于同一个 BFC 的两个相邻 Box 的 margin 会发生重叠
++ BFC 中子元素的 margin box 的左边， 与包含块 (BFC) border box的左边相接触 (子元素 absolute 除外)
++ BFC 的区域不会与 float 的元素区域重叠
++ 计算 BFC 的高度时，浮动子元素也参与计算
++ 文字层不会被浮动层覆盖，环绕于周围
 
+### 应用:
++ 阻止margin重叠
++ 可以包含浮动元素 —— 清除内部浮动(清除浮动的原理是两个div都位于同一个 BFC 区域之中)
++ 自适应两栏布局
++ 可以阻止元素被浮动元素覆盖
 ## float布局
 ### 如何实现圣杯布局和双飞翼布局
+#### float 布局
+- 使用float布局
+- 两侧使用margin负值，以便和中间内容横向重叠
+- 防止中间内容被两侧覆盖，一个用padding(圣杯) 一个用margin（双飞翼）
 ### 手写clearfix
-
+``` css
+        /* 手写 clearfix */
+        .clearfix:after{
+            content: '';
+            display: table;
+            clear: both;
+        }
+        .clearfix{
+            *zoom: 1; /*兼容 IE 低版本 */
+        }
+```
 ## flex布局
+语法回顾
+- flex-direction
+- justify-content   主轴对齐方式
+- align-items       交叉轴对齐方式
+- flex-wrap
+- algin-self
 ### flex实现一个三点色子
+```
+  /* flex 画三个点的色子 */
+  .box{
+      display: flex;  /* flex 布局 */
+      justify-content: space-between;/* 两端对齐 */
+  }
+  .item{
+      /* 背景色、大小、边框等 */
+  }
+  .item:nth-child(2){
+      align-self: center; 
+      /* 第二项居中对齐 */
+  }
+  .item:nth-child(3){
+      align-self: flex-end;
+      /* 第三项尾对齐 */
+  }
+```
+
+## css 定位
+### absolute和relative 分别依据什么定位？
+- relative 依据自身定位
+- absolute 依据最近一层的定位元素定位
+  + 定位元素
+   + absolute relative fixed
+   + body
+
+### 居中对齐有哪些实现方式？
+- 水平居中
+  - inline元素： text-align:cneter
+  - block 元素： margin:auto
+  - absolute 元素： left: 50% + margin-left 负值
+- 垂直居中
