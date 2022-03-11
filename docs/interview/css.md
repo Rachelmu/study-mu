@@ -458,6 +458,37 @@
   - absolute 元素： left: 50% + margin-left 负值
 - 垂直居中
   - inline元素： line-height的值等于height的值
-  - absolute元素： top:50% + margin-top 负值
-  - absolute元素： transform(-50%, -50%)
+  - absolute元素： top:50% + margin-top 负值 需要知道子元素的尺寸
+  - absolute元素： transform(-50%, -50%) 不需要知道子元素的尺寸
+  ``` js
+  .item{
+    position: absilute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%)
+  }
+  ```
   - absoulte元素： top,left, bottom, right = 0 + margin:auto
+    ``` js
+  .item{
+    position: absilute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+  }
+  ```
+
+## css 图文样式
+### line-height如何继承
+- 写具体数值，如30px，则继承该值
+- 写比例，如2/1.5，则继承该比例 自身的font-size * line-height
+- 写百分比，如200%，则继承计算出来的值 继承的font-size * line-height
+
+## css 响应式
+
+### rem是什么
+- rem是一个长度单位
+- px，绝对长度单位，最常用
+- em，相对长度单位，相对于父元素，不常用
