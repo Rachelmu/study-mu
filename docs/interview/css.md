@@ -499,3 +499,9 @@
 - rem，基于根元素的相对单位
 
 ### vw/vh
+- rem弊端：“阶梯”性
+
+#### 网页视口尺寸
+- window.screen.height  屏幕高度
+- window.innerHeight    网页视口高度
+- document.body.clientHeight   body宽度
