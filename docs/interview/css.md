@@ -500,7 +500,9 @@
 
 ### vw/vh
 - rem弊端：“阶梯”性
-
+- vh网页视口高度的1/100
+- vw网页视口宽度的1/100
+- vmax取两者最大值；vmin取两者最小值
 #### 网页视口尺寸
 - window.screen.height  屏幕高度
 - window.innerHeight    网页视口高度
