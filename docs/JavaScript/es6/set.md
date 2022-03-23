@@ -20,3 +20,19 @@ Object.is(NaN, NaN) // true
 Object.is(0, -0) // false
 ```
 而Object.is内部采用的比较算法就是SameValue(x, y)，而它与 === 的区别也正是这两种情况。
+
+#### SameValueZero
+``` js
+  const s = new Set()
+  s.add(0)
+  s.add(NaN)
+  s.has(-0) // true
+  s.has(NaN) // true
+```
+- 是不是与上述的三种算法的表现多不一样，这就是第四种比较算法SameValueZero，它与SameValue的区别主要在于0与-0是否相等。
+#### includes内部使用的比较算法就是SameValueZero
+``` js
+    const a = [0, NaN]
+    a.includes(-0) // true
+    a.includes(NaN) // true
+```
